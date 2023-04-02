@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D;
 using UnityEngine;
 
 public class PlayerStick : MonoBehaviour
@@ -8,10 +9,12 @@ public class PlayerStick : MonoBehaviour
     Rigidbody2D rb;
     float originalStickLength;
     float originalStickCooldown;
+    float speedForce;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        speedForce = PlayerProperties.speedForce;
         originalStickLength = PlayerProperties.stickLength;
         originalStickCooldown = PlayerProperties.stickCooldown;
     }
@@ -29,7 +32,7 @@ public class PlayerStick : MonoBehaviour
                     rb.gravityScale = 0f;
                     float moveVertical = Input.GetAxis("Vertical");
                     Vector2 movement = new Vector2(0f, moveVertical);
-                    transform.Translate(movement * Time.deltaTime * PlayerProperties.speedForce, Space.World);
+                    transform.Translate(movement * Time.deltaTime * speedForce, Space.World);
                 }
             }       
         }

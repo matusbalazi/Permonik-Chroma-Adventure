@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerProperties : MonoBehaviour
 {
-    public static float speedForce = 5f;
-    public static float jumpForce = 10f;
-    public static float gravityForce = 10f;
+    public static float speedForce = 50f;
+    public static float jumpForce = 50f;
+    public static float gravityForce = 70f;
     public static Color playerColor;
     public static bool isStickActive = false;
     public static float stickLength = 8f;

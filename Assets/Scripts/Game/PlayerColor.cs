@@ -20,28 +20,28 @@ public class PlayerColor : MonoBehaviour
     {
         if (Input.GetButtonDown("AButtonGreen") && PlayerProperties.playerColor != Color.green)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.green;
+            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.4334f, 0.78f, 0.234f);
             PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
             PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
         }
 
         if (Input.GetButtonDown("BButtonRed") && PlayerProperties.playerColor != Color.red)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.8117647f, 0.1803922f, 0.1764706f);
             PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
             PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
         }
 
         if (Input.GetButtonDown("XButtonBlue") && PlayerProperties.playerColor != Color.blue)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.01176471f, 0.6509804f, 0.8901961f);
             PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
             PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
         }
 
         if (Input.GetButtonDown("YButtonYellow") && PlayerProperties.playerColor != Color.yellow)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.9019608f, 0.8f, 0.1215686f);
             PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
             PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
         }

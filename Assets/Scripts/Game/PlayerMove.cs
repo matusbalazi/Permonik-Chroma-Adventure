@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     Rigidbody2D rb;
+    float speedForce;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();        
+        rb = GetComponent<Rigidbody2D>(); 
+        speedForce = PlayerProperties.speedForce;
     }
 
     void Update()
@@ -17,17 +19,17 @@ public class PlayerMove : MonoBehaviour
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             Vector2 movement = new Vector2(moveHorizontal, 0f);
-            transform.Translate(movement * Time.deltaTime * PlayerProperties.speedForce, Space.World);
+            transform.Translate(movement * speedForce * Time.deltaTime, Space.World);
         }
         
-
+        speedForce = PlayerProperties.speedForce;
         /*
          *  -----------------------------------------------------------------
          *  ALTERNATIVE MOVEMENT USING RIGIDBODY
          *  -----------------------------------------------------------------
          *  float moveHorizontal = Input.GetAxis("Horizontal");
          *  Vector2 movement = new Vector2(moveHorizontal, 0f);
-         *  rb.velocity = movement * speed;  
+         *  rb.velocity = movement * speedForce;  
         */
 
         /*

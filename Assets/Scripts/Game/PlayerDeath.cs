@@ -18,7 +18,7 @@ public class PlayerDeath : MonoBehaviour
             if (PlayerProperties.playerLifes > 0)
             {
                 PlayerProperties.playerLifes--;
-                rb.position = new Vector2(-6f, 1.5f);
+                rb.position = new Vector2(-15f, 15f);
             } 
             else
             {
