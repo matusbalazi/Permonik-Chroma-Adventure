@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerColor : MonoBehaviour
 {
     private Color originalColor;
-    private new Renderer renderer;
+    private new SpriteRenderer renderer;
 
     void Start()
     {
-        this.renderer = GetComponent<Renderer>();
-        PlayerProperties.playerColor = this.gameObject.GetComponent<Renderer>().material.color;
+        this.renderer = GetComponent<SpriteRenderer>();
+        PlayerProperties.playerColor = renderer.color;
         originalColor = PlayerProperties.playerColor;
     }
 
@@ -44,13 +44,13 @@ public class PlayerColor : MonoBehaviour
         if (PlayerProperties.remainingColorTime <= 0 && PlayerProperties.timeUntilColorReset >= 0)
         {
             PlayerProperties.timeUntilColorReset -= Time.deltaTime;
-            renderer.material.color = Color.Lerp(PlayerProperties.playerColor, originalColor, Time.deltaTime / (Constants.timeUntilColorReset / 2));
+            renderer.color = Color.Lerp(PlayerProperties.playerColor, originalColor, Time.deltaTime / (Constants.timeUntilColorReset / 2));
         }
     }
 
     void ChangeColor(Color newColor)
     {
-        renderer.material.color = newColor;
+        renderer.color = newColor;
         PlayerProperties.playerColor = newColor;
         PlayerProperties.timeUntilColorReset = Constants.timeUntilColorReset;
         PlayerProperties.remainingColorTime = Constants.remainingColorTime;

@@ -6,6 +6,7 @@ public class PlayerJump : MonoBehaviour
     private float jumpForce;
     private float gravityForce;
     private float distanceToGround;
+    [SerializeField] bool isGrounded;
 
     void Start()
     {
@@ -19,12 +20,14 @@ public class PlayerJump : MonoBehaviour
     {
         if (Mathf.Abs(rb.velocity.y) < 0.001f)
         {
-            PlayerProperties.speedForce = 50f;
+            PlayerProperties.speedForce = 120f;
 
             if (Input.GetAxis("RTJump") > 0 && IsGrounded())
             {
+                PlayerProperties.isStickActive = false;
+
+                PlayerProperties.speedForce = 100f;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                PlayerProperties.speedForce = 40f;
             }
         }
     }
@@ -40,5 +43,20 @@ public class PlayerJump : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.Raycast(transform.position, -Vector2.up, distanceToGround + 0.1f);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+            isGrounded = true;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+            isGrounded = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+            isGrounded = false;
     }
 }

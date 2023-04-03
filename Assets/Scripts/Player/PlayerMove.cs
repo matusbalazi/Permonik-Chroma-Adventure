@@ -18,6 +18,8 @@ public class PlayerMove : MonoBehaviour
         transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
 
         speedForce = PlayerProperties.speedForce;
+
+
         /*
          *  -----------------------------------------------------------------
          *  ALTERNATIVE MOVEMENT USING RIGIDBODY

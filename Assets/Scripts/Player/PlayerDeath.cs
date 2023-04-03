@@ -2,23 +2,19 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private readonly int deathHeight = -20;
-    private static readonly Vector2 respawnPosition = new(-15f, 15f);
+    private readonly int deathHeight = -100;
+    private static readonly Vector3 respawnPosition = new(0f, 0f, 0f);
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     void Update()
     {
-        if (rb.position.y < deathHeight)
+        if (transform.position.y < deathHeight)
         {
             if (PlayerProperties.playerLifes > 0)
             {
+                Debug.Log("Spadol");
                 PlayerProperties.playerLifes--;
-                rb.position = respawnPosition;
+                transform.position = respawnPosition;
             }
             else
             {
