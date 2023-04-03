@@ -1,27 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseGame : MonoBehaviour
 {
+    //TODO Pridat osetrenie na pauznutie len v hre + dorobit pause screen
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown("StartButtonPause"))
         {
+            if (GameProperties.isPaused)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
             GameProperties.isPaused = !GameProperties.isPaused;
-            LaunchPause();
-        }
-    }
-
-    private void LaunchPause()
-    {
-        if (GameProperties.isPaused)
-        {
-            // do something
-        } 
-        else
-        {
-            // do something different
         }
     }
 }

@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private readonly int deathHeight = -20;
+    private static readonly Vector2 respawnPosition = new(-15f, 15f);
 
     void Start()
     {
@@ -13,17 +13,17 @@ public class PlayerDeath : MonoBehaviour
 
     void Update()
     {
-        if (rb.position.y < -20)
+        if (rb.position.y < deathHeight)
         {
             if (PlayerProperties.playerLifes > 0)
             {
                 PlayerProperties.playerLifes--;
-                rb.position = new Vector2(-15f, 15f);
-            } 
+                rb.position = respawnPosition;
+            }
             else
             {
                 GameProperties.isEnd = true;
-            }         
+            }
         }
     }
 }
