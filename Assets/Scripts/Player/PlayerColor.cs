@@ -58,5 +58,10 @@ public class PlayerColor : MonoBehaviour
             PlayerProperties.colorChangeCountdown -= Time.deltaTime;
             this.gameObject.GetComponent<Renderer>().material.color = Color.Lerp(PlayerProperties.playerColor, originalColor, Time.deltaTime / (originalColorChangeCountdown / 2));
         }
+
+        if (PlayerProperties.colorChangeCountdown <= 0)
+        {
+            PlayerProperties.playerColor = originalColor;
+        }
     }
 }
