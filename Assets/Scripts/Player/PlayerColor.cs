@@ -1,62 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
 {
-    Color originalColor;
-    float originalColorChangeCooldown;
-    float originalColorChangeCountdown;
+    private Color originalColor;
+    private new Renderer renderer;
 
     void Start()
     {
-        PlayerProperties.playerColor = this.gameObject.GetComponent<Renderer>().material.color;
+        this.renderer = GetComponent<Renderer>();
+        PlayerProperties.playerColor = renderer.material.color;
         originalColor = PlayerProperties.playerColor;
-        originalColorChangeCooldown = PlayerProperties.colorChangeCooldown;
-        originalColorChangeCountdown = PlayerProperties.colorChangeCountdown;
     }
 
+    //Cele tieto farby sa este pomenia
     void Update()
     {
-        if (Input.GetButtonDown("AButtonGreen") && PlayerProperties.playerColor != Color.green)
+        if (Input.GetButtonDown("AButtonGreen") && PlayerProperties.playerColor != Colors.green)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.4334f, 0.78f, 0.234f);
-            PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
-            PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
+            ChangeColor(Colors.green);
         }
 
-        if (Input.GetButtonDown("BButtonRed") && PlayerProperties.playerColor != Color.red)
+        if (Input.GetButtonDown("BButtonRed") && PlayerProperties.playerColor != Colors.red)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.8117647f, 0.1803922f, 0.1764706f);
-            PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
-            PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
+            ChangeColor(Colors.red);
         }
 
-        if (Input.GetButtonDown("XButtonBlue") && PlayerProperties.playerColor != Color.blue)
+        if (Input.GetButtonDown("XButtonBlue") && PlayerProperties.playerColor != Colors.blue)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.01176471f, 0.6509804f, 0.8901961f);
-            PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
-            PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
+            ChangeColor(Colors.blue);
         }
 
-        if (Input.GetButtonDown("YButtonYellow") && PlayerProperties.playerColor != Color.yellow)
+        if (Input.GetButtonDown("YButtonYellow") && PlayerProperties.playerColor != Colors.yellow)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = new Color(0.9019608f, 0.8f, 0.1215686f);
-            PlayerProperties.colorChangeCooldown = originalColorChangeCooldown;
-            PlayerProperties.colorChangeCountdown = originalColorChangeCountdown;
+            ChangeColor(Colors.yellow);
         }
 
-        PlayerProperties.playerColor = this.gameObject.GetComponent<Renderer>().material.color;
+        PlayerProperties.playerColor = renderer.material.color;
 
-        if (PlayerProperties.colorChangeCooldown >= 0)
+        if (PlayerProperties.remainingColorTime >= 0)
         {
-            PlayerProperties.colorChangeCooldown -= Time.deltaTime;
+            PlayerProperties.remainingColorTime -= Time.deltaTime;
         }
 
-        if (PlayerProperties.colorChangeCooldown <= 0 && PlayerProperties.colorChangeCountdown >= 0)
+        if (PlayerProperties.remainingColorTime <= 0 && PlayerProperties.timeUntilColorReset >= 0)
         {
-            PlayerProperties.colorChangeCountdown -= Time.deltaTime;
-            this.gameObject.GetComponent<Renderer>().material.color = Color.Lerp(PlayerProperties.playerColor, originalColor, Time.deltaTime / (originalColorChangeCountdown / 2));
+            PlayerProperties.timeUntilColorReset -= Time.deltaTime;
+            renderer.material.color = Color
+                .Lerp(PlayerProperties.playerColor, originalColor, Time.deltaTime / (Constants.timeUntilColorReset / 2));
         }
+    }
+
+    void ChangeColor(Color newColor)
+    {
+        renderer.material.color = newColor;
+        PlayerProperties.timeUntilColorReset = Constants.timeUntilColorReset;
+        PlayerProperties.remainingColorTime = Constants.remainingColorTime;
     }
 }
