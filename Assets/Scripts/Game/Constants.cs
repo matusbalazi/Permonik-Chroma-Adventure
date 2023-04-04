@@ -1,7 +1,7 @@
 ﻿public static class Constants
 {
-    public static readonly float remainingColorTime = 10f;
-    public static readonly float timeUntilColorReset = 10f;
-    public static readonly float remainingStickTime = 8f;
-    public static readonly float timeUntilStickRegen = 2f;
+    public static float remainingColorTime = 10f;
+    public static float timeUntilColorReset = 10f;
+    public static float remainingStickTime = 8f;
+    public static float timeUntilStickRegen = 2f;
 }

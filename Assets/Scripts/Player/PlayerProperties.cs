@@ -4,7 +4,7 @@ public static class PlayerProperties
 {
     public static float speedForce = 120f;
     public static float jumpForce = 50f;
-    public static float gravityForce = 300f;
+    public static float gravityForce = 100f;
     public static Color playerColor;
     public static bool isStickActive = false;
     public static float remainingStickTime = 80f;
