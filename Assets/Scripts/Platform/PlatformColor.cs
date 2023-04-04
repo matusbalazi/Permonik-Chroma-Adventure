@@ -26,10 +26,10 @@ public class PlatformColor : MonoBehaviour
             if (PlayerProperties.playerColor.Equals(platformColor) && !PlayerProperties.playerColor.Equals(playerColor))
             {
                 this.gameObject.GetComponent<Collider2D>().isTrigger = false;
-            } 
+            }
             else
             {
-                this.gameObject.GetComponent<Collider2D>().isTrigger = true;          
+                this.gameObject.GetComponent<Collider2D>().isTrigger = true;
             }
         }
     }

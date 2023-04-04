@@ -12,7 +12,6 @@ public class PlayerDeath : MonoBehaviour
         {
             if (PlayerProperties.playerLifes > 0)
             {
-                Debug.Log("Spadol");
                 PlayerProperties.playerLifes--;
                 transform.position = respawnPosition;
             }

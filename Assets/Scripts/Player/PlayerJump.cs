@@ -6,7 +6,8 @@ public class PlayerJump : MonoBehaviour
     private float jumpForce;
     private float gravityForce;
     private float distanceToGround;
-    [SerializeField] bool isGrounded;
+    [SerializeField]
+    bool isGrounded;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class PlayerJump : MonoBehaviour
     {
         return Physics2D.Raycast(transform.position, -Vector2.up, distanceToGround + 0.1f);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
