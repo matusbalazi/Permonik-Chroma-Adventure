@@ -21,10 +21,16 @@ public class PlayerStick : MonoBehaviour
                 PlayerProperties.remainingStickTime -= Time.deltaTime;
 
                 rb.gravityScale = 0f;
+                rb.velocity = Vector3.zero;
                 float moveVertical = Input.GetAxis("Vertical");
                 Vector2 movement = new(0f, moveVertical);
                 transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
             }
+        }
+
+        if (Input.GetAxis("LTStick") == 0 && PlayerProperties.isStickActive)
+        {
+            rb.velocity += PlayerProperties.gravityForce * Time.deltaTime * Vector2.down;
         }
 
         if (Input.GetAxis("LTStick") == 0 || PlayerProperties.remainingStickTime <= 0 || !PlayerProperties.isStickActive)

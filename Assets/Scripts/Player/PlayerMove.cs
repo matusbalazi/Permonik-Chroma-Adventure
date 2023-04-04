@@ -16,7 +16,6 @@ public class PlayerMove : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new(moveHorizontal, 0f);
         transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
-
         speedForce = PlayerProperties.speedForce;
 
 
@@ -26,7 +25,7 @@ public class PlayerMove : MonoBehaviour
          *  -----------------------------------------------------------------
          *  float moveHorizontal = Input.GetAxis("Horizontal");
          *  Vector2 movement = new Vector2(moveHorizontal, 0f);
-         *  rb.velocity = movement * speedForce;  
+         *  rb.velocity = speedForce * Time.deltaTIme * movement;  
         */
 
         /*
