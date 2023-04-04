@@ -7,6 +7,7 @@ public class PlatformColor : MonoBehaviour
     [SerializeField] Color platformColor;
     [SerializeField] Color currentPlayerColor;
     private new SpriteRenderer renderer;
+    private new Collider2D collider;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class PlatformColor : MonoBehaviour
         playerColor = player.GetComponent<SpriteRenderer>().color;
         platformColor = gameObject.GetComponent<SpriteRenderer>().color;
         currentPlayerColor = PlayerProperties.playerColor;
+        collider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -25,34 +27,36 @@ public class PlatformColor : MonoBehaviour
 
             if (PlayerProperties.playerColor.Equals(platformColor) && !PlayerProperties.playerColor.Equals(playerColor))
             {
-                this.gameObject.GetComponent<Collider2D>().isTrigger = false;
+                collider.isTrigger = false;
             }
             else
             {
-                this.gameObject.GetComponent<Collider2D>().isTrigger = true;
+                collider.isTrigger = true;
             }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && PlayerProperties.playerColor.Equals(platformColor) && !PlayerProperties.playerColor.Equals(playerColor))
-            this.gameObject.GetComponent<Collider2D>().isTrigger = false;
-        else
-        {
-            this.gameObject.GetComponent<Collider2D>().isTrigger = true;
-            //player.transform.SetParent(null); //TODO PRECO???
-        }
+        CheckCollision(collision.collider);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && PlayerProperties.playerColor.Equals(platformColor) && !PlayerProperties.playerColor.Equals(playerColor))
-            this.gameObject.GetComponent<Collider2D>().isTrigger = false;
-        else
+        CheckCollision(other);
+    }
+
+    private void CheckCollision(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Player")
+            && PlayerProperties.playerColor.Equals(platformColor)
+            && !PlayerProperties.playerColor.Equals(playerColor))
         {
-            this.gameObject.GetComponent<Collider2D>().isTrigger = true;
-            //player.transform.SetParent(null); //TODO PRECO???
+            this.collider.isTrigger = false;
+        }
+        else if (!this.collider.isTrigger)
+        {
+            this.collider.isTrigger = true;
         }
     }
 }

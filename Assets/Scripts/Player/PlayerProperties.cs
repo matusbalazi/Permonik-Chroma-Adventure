@@ -15,4 +15,5 @@ public static class PlayerProperties
     public static int playerGems = 0;
     public static float colorChangeCooldown = 10f;
     public static float colorChangeCountdown = 10f;
+    public static int distance = 0;
 }

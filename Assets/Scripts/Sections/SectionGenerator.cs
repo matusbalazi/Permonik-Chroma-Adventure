@@ -22,10 +22,9 @@ public class SectionGenerator : MonoBehaviour
     }
     private void Update()
     {
-        float distance = GameController.GetDistance();
-        if (distance == 500)
+        if (PlayerProperties.distance == 500)
             sectionsPool.AddRange(localBank.GetSectionsMedium());
-        else if (distance == 1500)
+        else if (PlayerProperties.distance == 1500)
             sectionsPool.AddRange(localBank.GetSectionsHard());
 
     }

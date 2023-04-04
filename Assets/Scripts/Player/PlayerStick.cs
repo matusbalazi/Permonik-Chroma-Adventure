@@ -5,7 +5,8 @@ public class PlayerStick : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float speedForce;
-
+    private readonly float fullStickTime = 8f;
+    private readonly float timeUntilStickRegen = 2f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,7 +39,7 @@ public class PlayerStick : MonoBehaviour
             rb.gravityScale = 1f;
         }
 
-        if (Input.GetAxis("LTStick") == 0 && Math.Round(Constants.remainingStickTime - PlayerProperties.remainingStickTime) > 1)
+        if (Input.GetAxis("LTStick") == 0 && Math.Round(fullStickTime - PlayerProperties.remainingStickTime) > 1)
         {
             if (PlayerProperties.timeUntilStickRegen >= 0)
             {
@@ -49,7 +50,7 @@ public class PlayerStick : MonoBehaviour
         if (PlayerProperties.timeUntilStickRegen <= 0)
         {
             PlayerProperties.remainingStickTime++;
-            PlayerProperties.timeUntilStickRegen = Constants.timeUntilStickRegen;
+            PlayerProperties.timeUntilStickRegen = timeUntilStickRegen;
         }
     }
 
