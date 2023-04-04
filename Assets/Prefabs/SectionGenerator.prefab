@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8720358267262642563}
   - component: {fileID: 3644681702496608038}
   - component: {fileID: 7677159449466047419}
-  - component: {fileID: 1973308590616408528}
+  - component: {fileID: 1064092612793673747}
   m_Layer: 0
   m_Name: SectionGenerator
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1973308590616408528
+--- !u!114 &1064092612793673747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,11 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1022268635015034082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2f6facbe3936445ac8e7f65c97c126, type: 3}
+  m_Script: {fileID: 11500000, guid: f3ff5bc02c1603548a6e1e02d556bcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bank: {fileID: 3641284346270558264, guid: f93904c5bce596a4baae38057a555963, type: 3}
+  bank: {fileID: 7218129241790242766, guid: f93904c5bce596a4baae38057a555963, type: 3}
   lastSectionPosition: {fileID: 0}
   nextSectionsTrigger: {fileID: 1022268635015034082}
-  newPosition: {x: 0, y: 0, z: 0}
   sectionsPool: []

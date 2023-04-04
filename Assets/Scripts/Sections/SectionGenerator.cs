@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SectionGenerator : MonoBehaviour
 {
-    [SerializeField] private SectionBank bank;
+    [SerializeField] private GameObject bank;
     [SerializeField] private Transform lastSectionPosition;
     [SerializeField] private GameObject nextSectionsTrigger;
 
@@ -11,7 +11,7 @@ public class SectionGenerator : MonoBehaviour
     private int section = 1, lvl = 0;
     private SectionBank localBank;
 
-    [SerializeField] List<Section> sectionsPool;
+    [SerializeField] List<GameObject> sectionsPool;
 
     private void Start()
     {
@@ -39,13 +39,14 @@ public class SectionGenerator : MonoBehaviour
             GameObject nextSectionGenerator = null;
             for (int i = 0; i <= 5; i++)
             {
-                Section nextSection = sectionsPool[Random.Range(0, sectionsPool.Count)];
+                GameObject nextSection = sectionsPool[Random.Range(0, sectionsPool.Count)];
                 newPosition = lastSectionPosition.position + new Vector3(300 * section, lvl, 0);
 
                 Transform tr = Instantiate(nextSection, newPosition, Quaternion.identity).transform;
 
                 if (i == 3)
-                    nextSectionGenerator = Instantiate(nextSectionsTrigger, newPosition + new Vector3(-150, 30, 0), Quaternion.identity);
+                    nextSectionGenerator = Instantiate(nextSectionsTrigger, 
+                        newPosition + new Vector3(-150, 30, 0), Quaternion.identity);
 
                 IncreaseLvl(nextSection);
                 section++;
@@ -57,7 +58,7 @@ public class SectionGenerator : MonoBehaviour
         }
     }
 
-    private void IncreaseLvl(Section nextSection)
+    private void IncreaseLvl(GameObject nextSection)
     {
         switch (nextSection.GetComponent<Section>().GetEndsOnLvl())
         {

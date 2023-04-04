@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SectionBank : MonoBehaviour
 {
-    [SerializeField] private List<Section> sectionsEasy;
-    [SerializeField] private List<Section> sectionsMedium;
-    [SerializeField] private List<Section> sectionsHard;    
+    [SerializeField] private List<GameObject> sectionsEasy;
+    [SerializeField] private List<GameObject> sectionsMedium;
+    [SerializeField] private List<GameObject> sectionsHard;    
     
-    public List<Section> GetSectionsEasy() { return sectionsEasy; }
-    public List<Section> GetSectionsMedium() { return sectionsMedium; }
-    public List<Section> GetSectionsHard() { return sectionsHard; }
+    public List<GameObject> GetSectionsEasy() { return sectionsEasy; }
+    public List<GameObject> GetSectionsMedium() { return sectionsMedium; }
+    public List<GameObject> GetSectionsHard() { return sectionsHard; }
 }
