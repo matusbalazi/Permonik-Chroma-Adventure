@@ -35,7 +35,7 @@ public class PlayerStick : MonoBehaviour
 
         if (Input.GetAxis("LTStick") == 0 || PlayerProperties.remainingStickTime <= 0 || !PlayerProperties.isStickActive)
         {
-            rb.gravityScale = 6f;
+            rb.gravityScale = 1f;
         }
 
         if (Input.GetAxis("LTStick") == 0 && Math.Round(Constants.remainingStickTime - PlayerProperties.remainingStickTime) > 1)
