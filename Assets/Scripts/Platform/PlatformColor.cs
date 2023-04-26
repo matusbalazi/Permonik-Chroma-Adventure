@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlatformColor : MonoBehaviour
@@ -27,36 +28,36 @@ public class PlatformColor : MonoBehaviour
 
             if (PlayerProperties.playerColor.Equals(platformColor) && !PlayerProperties.playerColor.Equals(playerColor))
             {
-                collider.isTrigger = false;
+                StartCoroutine(WaitForX(10f));
+                collider.enabled = true;
             }
             else
             {
-                collider.isTrigger = true;
+                collider.enabled = false;
             }
         }
     }
 
+    IEnumerator WaitForX(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+    }
+   
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckCollision(collision.collider);
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        CheckCollision(other);
-    }
-
     private void CheckCollision(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player")
             && PlayerProperties.playerColor.Equals(platformColor)
             && !PlayerProperties.playerColor.Equals(playerColor))
         {
-            this.collider.isTrigger = false;
+            this.collider.enabled = true;
         }
         else if (!this.collider.isTrigger)
         {
-            this.collider.isTrigger = true;
+            this.collider.enabled = false;
         }
     }
 }
