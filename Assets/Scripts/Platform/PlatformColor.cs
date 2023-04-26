@@ -6,7 +6,7 @@ public class PlatformColor : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Color playerColor;
     [SerializeField] private Color platformColor;
-    [SerializeField] private Color currentPlayerColor;
+    private Color CurrentPlayerColor { get; set; }
     private new SpriteRenderer renderer;
     private new Collider2D collider;
 
@@ -16,17 +16,18 @@ public class PlatformColor : MonoBehaviour
         renderer.color = Colors.GetRandomColor();
         playerColor = player.GetComponent<SpriteRenderer>().color;
         platformColor = gameObject.GetComponent<SpriteRenderer>().color;
-        currentPlayerColor = PlayerProperties.playerColor;
+        CurrentPlayerColor = PlayerProperties.playerColor;
         collider = GetComponent<Collider2D>();
     }
 
     private void Update()
     {
-        if (currentPlayerColor != PlayerProperties.playerColor)
+        if (CurrentPlayerColor != PlayerProperties.playerColor)
         {
-            currentPlayerColor = PlayerProperties.playerColor;
+            CurrentPlayerColor = PlayerProperties.playerColor;
 
-            if (PlayerProperties.playerColor.Equals(platformColor) && !PlayerProperties.playerColor.Equals(playerColor))
+            if (PlayerProperties.playerColor.Equals(platformColor)
+                && !PlayerProperties.playerColor.Equals(playerColor))
             {
                 StartCoroutine(WaitForX(10f));
                 collider.enabled = true;
@@ -42,16 +43,36 @@ public class PlatformColor : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
     }
-   
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckCollision(collision.collider);
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        CheckCollision(collision.collider);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        CheckCollision(other);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        CheckCollision(collision.collider);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        CheckCollision(other);
+    }
+
     private void CheckCollision(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player")
-            && PlayerProperties.playerColor.Equals(platformColor)
-            && !PlayerProperties.playerColor.Equals(playerColor))
+            && PlayerProperties.playerColor.Equals(platformColor))
         {
             this.collider.enabled = true;
         }

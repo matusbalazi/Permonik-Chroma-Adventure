@@ -6,7 +6,7 @@ public class PlayerJump : MonoBehaviour
     private float jumpForce;
     private float gravityForce;
     private float distanceToGround;
-    [SerializeField] bool isGrounded;
+    [SerializeField] bool touchedCeiling;
 
     void Start()
     {
@@ -42,6 +42,45 @@ public class PlayerJump : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.Raycast(transform.position, -Vector2.up, distanceToGround + 0.1f);
+        if (!touchedCeiling && Physics2D.Raycast(transform.position, -Vector2.up, distanceToGround + 0.1f))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ceiling"))
+            touchedCeiling = true;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ceiling"))
+            touchedCeiling = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ceiling"))
+            touchedCeiling = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ceiling"))
+            touchedCeiling = true;
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ceiling"))
+            touchedCeiling = true;
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ceiling"))
+            touchedCeiling = false;
     }
 }

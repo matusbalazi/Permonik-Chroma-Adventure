@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CollectController : MonoBehaviour
 {
@@ -9,9 +8,9 @@ public class CollectController : MonoBehaviour
         {
             if (collision.gameObject.name == "Gem")
             {
-                PlayerProperties.playerGems++;                
+                PlayerProperties.playerGems++;
             }
             collision.gameObject.SetActive(false);
-        }            
+        }
     }
 }

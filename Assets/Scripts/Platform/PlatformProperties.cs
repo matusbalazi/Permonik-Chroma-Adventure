@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 //TODO UPRATAT
 public class PlatformProperties : MonoBehaviour
@@ -23,10 +22,10 @@ public class PlatformProperties : MonoBehaviour
             if (rnd < chanceToBreak)
             {
                 spriteRenderer.sprite = brokenPlatform;
-                Color color = new (spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.8f);
+                Color color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.8f);
                 spriteRenderer.color = color;
-            }          
-        }      
+            }
+        }
     }
 
     private void Update()
@@ -55,7 +54,6 @@ public class PlatformProperties : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && this.isStickable)
         {
             PlayerProperties.isStickActive = true;
-            Debug.Log("Stick activated");
         }
     }
 
@@ -64,7 +62,6 @@ public class PlatformProperties : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && this.isStickable)
         {
             PlayerProperties.isStickActive = false;
-            Debug.Log("Stick deactivated");
         }
     }
 
@@ -72,12 +69,10 @@ public class PlatformProperties : MonoBehaviour
     {
         this.GetComponent<SpriteRenderer>().enabled = false;
         this.GetComponent<Collider2D>().enabled = false;
-        Debug.Log("Zlomena");
 
         if (timeToRespawn >= 0)
         {
             timeToRespawn -= Time.deltaTime;
-            Debug.Log("Time: " + timeToRespawn);
         }
 
         if (timeToRespawn <= 0)
@@ -87,7 +82,6 @@ public class PlatformProperties : MonoBehaviour
             timeToBreak = 1f;
             timeToRespawn = 3f;
             isBroken = false;
-            Debug.Log("Opravena");
         }
     }
 }

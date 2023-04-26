@@ -7,6 +7,7 @@ TagManager:
   - Collectable
   - Platform
   - PlayerTrigger
+  - Ceiling
   layers:
   - Default
   - TransparentFX

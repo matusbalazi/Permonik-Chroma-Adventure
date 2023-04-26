@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Background : MonoBehaviour
@@ -16,6 +14,6 @@ public class Background : MonoBehaviour
     {
         float distanceX = camera.transform.position.x;
         float distanceY = camera.transform.position.y;
-        transform.position = new Vector3(startPosX + (distanceX/1.1f), startPosY + (distanceY/0.8f), transform.position.z);        
+        transform.position = new Vector3(startPosX + (distanceX / 1.1f), startPosY + (distanceY / 0.8f), transform.position.z);
     }
 }

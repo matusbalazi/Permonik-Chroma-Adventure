@@ -12,7 +12,8 @@ public static class Colors
     {
         int colorIndex = Random.Range(0, numOfColors);
 
-        return colorIndex switch {
+        return colorIndex switch
+        {
             0 => green,
             1 => red,
             2 => yellow,
