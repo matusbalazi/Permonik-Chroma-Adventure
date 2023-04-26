@@ -124,7 +124,6 @@ MonoBehaviour:
   player: {fileID: 6349047311117262076, guid: 4f2833f344d03324da7705b9ba8002e5, type: 3}
   playerColor: {r: 0, g: 0, b: 0, a: 0}
   platformColor: {r: 0, g: 0, b: 0, a: 0}
-  currentPlayerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2605390040903180896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,11 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStickable: 0
-  isBrakeable: 0
+  isBreakable: 0
   isBroken: 0
   chanceToBreak: 40
   timeToBreak: 1
   timeToRespawn: 3
+  brokenPlatform: {fileID: 21300000, guid: d79765025f5cf024bb9177494c4717f4, type: 3}
 --- !u!1 &2421297401671549403
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +153,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7887256501542943501}
   - component: {fileID: 6762940797167714998}
-  - component: {fileID: 5920751962270811154}
   m_Layer: 0
   m_Name: Ceiling
   m_TagString: Ceiling
@@ -202,15 +201,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5920751962270811154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421297401671549403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43a5de9f30d2344f9bbc0a7e3c542fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

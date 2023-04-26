@@ -41,8 +41,8 @@ public class PauseGame : MonoBehaviour
         GameProperties.isPaused = false;
     }
 
-    public void ReturnToMainMenu()
-    {
+    public void ReturnToMainMenu() { 
+        GameProperties.isPaused = false;
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
