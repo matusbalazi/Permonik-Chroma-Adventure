@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    Rigidbody2D rb;
-    float speedForce;
+    private Rigidbody2D rb;
+    private float speedForce;
 
     void Start()
     {

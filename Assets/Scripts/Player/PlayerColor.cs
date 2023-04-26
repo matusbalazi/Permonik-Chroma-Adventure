@@ -9,12 +9,11 @@ public class PlayerColor : MonoBehaviour
 
     void Start()
     {
-        this.renderer = GetComponent<Renderer>();
+        renderer = GetComponent<Renderer>();
         PlayerProperties.playerColor = renderer.material.color;
         originalColor = PlayerProperties.playerColor;
     }
 
-    //Cele tieto farby sa este pomenia
     void Update()
     {
         if (GameProperties.isPaused)

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlatformColor : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] Color playerColor;
-    [SerializeField] Color platformColor;
-    [SerializeField] Color currentPlayerColor;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Color playerColor;
+    [SerializeField] private Color platformColor;
+    [SerializeField] private Color currentPlayerColor;
     private new SpriteRenderer renderer;
     private new Collider2D collider;
 

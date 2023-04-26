@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RotateGem : MonoBehaviour
 {
-    [SerializeField] float speed = 20;
-    Vector3 rotation;
+    [SerializeField] private float speed = 20;
+    private Vector3 rotation;
     private void Start()
     {
         rotation = new Vector3(0, 10, 0);

@@ -5,7 +5,7 @@ public class PlatformMove : MonoBehaviour
     [SerializeField] private Transform posL, posR;
     [SerializeField] private float speed = 30;
     [SerializeField] private int borders;
-    Vector2 targetPos;
+    private Vector2 targetPos;
 
     private void Start()
     {
