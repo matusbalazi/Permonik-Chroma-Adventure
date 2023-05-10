@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
 {
-    private Color originalColor;
+    private Color originalColor = Color.white;
     private new Renderer renderer;
     private readonly float colorDuration = 10f;
     private readonly float colorResetDuration = 10f;
@@ -10,8 +10,7 @@ public class PlayerColor : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<Renderer>();
-        PlayerProperties.playerColor = renderer.material.color;
-        originalColor = PlayerProperties.playerColor;
+        renderer.material.color = Color.white;
     }
 
     void Update()
@@ -41,8 +40,6 @@ public class PlayerColor : MonoBehaviour
             ChangeColor(Colors.yellow);
         }
 
-        PlayerProperties.playerColor = renderer.material.color;
-
         if (PlayerProperties.remainingColorTime >= 0)
         {
             PlayerProperties.remainingColorTime -= Time.deltaTime;
@@ -52,18 +49,22 @@ public class PlayerColor : MonoBehaviour
         {
             PlayerProperties.timeUntilColorReset -= Time.deltaTime;
             renderer.material.color = Color
-                .Lerp(PlayerProperties.playerColor, originalColor, Time.deltaTime / (colorResetDuration / 2));
+                .Lerp(PlayerProperties.displayedColor, originalColor, Time.deltaTime / (colorResetDuration / 2));
+            PlayerProperties.displayedColor = renderer.material.color;
         }
 
-        if (PlayerProperties.colorChangeCountdown <= 0)
+        if (PlayerProperties.timeUntilColorReset <= 0)
         {
             PlayerProperties.playerColor = originalColor;
+            PlayerProperties.displayedColor = originalColor;
         }
     }
 
     void ChangeColor(Color newColor)
     {
+        PlayerProperties.playerColor = newColor;
         renderer.material.color = newColor;
+        PlayerProperties.displayedColor = newColor;
         PlayerProperties.timeUntilColorReset = colorResetDuration;
         PlayerProperties.remainingColorTime = colorDuration;
     }

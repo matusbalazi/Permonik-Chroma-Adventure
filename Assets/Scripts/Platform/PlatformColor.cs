@@ -4,9 +4,7 @@ using UnityEngine;
 public class PlatformColor : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private Color playerColor;
     [SerializeField] private Color platformColor;
-    private Color CurrentPlayerColor { get; set; }
     private new SpriteRenderer renderer;
     private new Collider2D collider;
 
@@ -14,34 +12,30 @@ public class PlatformColor : MonoBehaviour
     {
         renderer = GetComponent<SpriteRenderer>();
         renderer.color = Colors.GetRandomColor();
-        playerColor = player.GetComponent<SpriteRenderer>().color;
         platformColor = gameObject.GetComponent<SpriteRenderer>().color;
-        CurrentPlayerColor = PlayerProperties.playerColor;
         collider = GetComponent<Collider2D>();
     }
 
     private void Update()
     {
-        if (CurrentPlayerColor != PlayerProperties.playerColor)
+        if ((PlayerProperties.playerColor == PlayerProperties.displayedColor)
+            &&  PlayerProperties.playerColor == platformColor)
         {
-            CurrentPlayerColor = PlayerProperties.playerColor;
-
-            if (PlayerProperties.playerColor.Equals(platformColor)
-                && !PlayerProperties.playerColor.Equals(playerColor))
-            {
-                StartCoroutine(WaitForX(10f));
-                collider.enabled = true;
-            }
-            else
-            {
-                collider.enabled = false;
-            }
+            collider.enabled = true;
+            return;
         }
-    }
 
-    IEnumerator WaitForX(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
+        if (PlayerProperties.playerColor != platformColor)
+        {
+            collider.enabled = false;
+            return;
+        }
+
+        if (PlayerProperties.playerColor != PlayerProperties.displayedColor)
+        {
+            collider.enabled = true;
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
