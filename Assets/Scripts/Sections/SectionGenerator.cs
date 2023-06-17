@@ -22,9 +22,9 @@ public class SectionGenerator : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayerProperties.distance == 500)
+        if (PlayerProperties.score == 500)
             sectionsPool.AddRange(localBank.GetSectionsMedium());
-        else if (PlayerProperties.distance == 1500)
+        else if (PlayerProperties.score == 1500)
             sectionsPool.AddRange(localBank.GetSectionsHard());
 
     }

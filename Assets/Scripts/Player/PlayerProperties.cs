@@ -15,7 +15,7 @@ public static class PlayerProperties
     public static int playerLifes = 3;
     public static int playerGems = 0;
     public static float colorChangeCooldown = 10f;
-    public static int distance = 0;
+    public static int score = 0;
 
     public static Vector3 Checkpoint { get; set; }
 }

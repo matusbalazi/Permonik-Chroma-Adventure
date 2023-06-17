@@ -1,10 +1,11 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlatformColor : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private Color playerColor;
     [SerializeField] private Color platformColor;
+    [SerializeField] private Color currentPlayerColor;
     private new SpriteRenderer renderer;
     private new Collider2D collider;
 
@@ -19,7 +20,7 @@ public class PlatformColor : MonoBehaviour
     private void Update()
     {
         if ((PlayerProperties.playerColor == PlayerProperties.displayedColor)
-            &&  PlayerProperties.playerColor == platformColor)
+            && PlayerProperties.playerColor == platformColor)
         {
             collider.enabled = true;
             return;

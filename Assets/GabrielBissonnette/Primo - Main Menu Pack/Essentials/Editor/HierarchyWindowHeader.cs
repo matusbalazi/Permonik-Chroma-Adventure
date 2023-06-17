@@ -1,8 +1,8 @@
-﻿using UnityEditor;
-using UnityEngine;
-
-//Simply re-styles a gameObject name in the Hiearchy window to be black and all caps.
+﻿//Simply re-styles a gameObject name in the Hiearchy window to be black and all caps.
 //Allows us to seperate our gameObjects and not lose our minds.
+
+using UnityEditor;
+using UnityEngine;
 
 [InitializeOnLoad]
 public static class HierarchySectionHeader

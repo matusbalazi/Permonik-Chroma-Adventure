@@ -1,25 +1,59 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour
 {
     private readonly int deathHeight = -100;
-    private static readonly Vector3 respawnPosition = new(0f, 10f, 0f);
+    private readonly Vector3 respawnPosition = new(0f, 10f, 0f);
+    [SerializeField] private GameObject menuButton;
+    [SerializeField] private GameObject newGameButton;
+    [SerializeField] private GameObject deathScreen;
+    [SerializeField] private Image menuButtonImage;
+    [SerializeField] private Image newGameButtonImage;
+    [SerializeField] private TMP_Text gameOverText;
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject controller;
+    private XMLHighscoreManager HighscoreManager;
 
-
-    void Update()
+    private void Start()
     {
-        if (transform.position.y < deathHeight)
+        HighscoreManager = controller.GetComponent<XMLHighscoreManager>();
+    }
+    private void Update()
+    {
+        if (GameProperties.isPaused)
         {
-            if (PlayerProperties.playerLifes > 0)
-            {
-                //respawnPosition = PlayerProperties.Checkpoint; 
-                PlayerProperties.playerLifes--;
-                transform.position = respawnPosition;
-            }
-            else
-            {
-                GameProperties.isEnd = true;
-            }
+            return;
         }
+
+        if (transform.position.y >= deathHeight)
+        {
+            return;
+        }
+
+        if (PlayerProperties.playerLifes > 0)
+        {
+            PlayerProperties.playerLifes--;
+            transform.position = respawnPosition;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            deathScreen.SetActive(true);
+            HighscoreManager.AddScore(PlayerProperties.score);
+            scoreText.text = "Score: " + PlayerProperties.score.ToString();
+            SetToPlayerColors();
+            GameProperties.isPaused = true;
+            EventSystem.current.SetSelectedGameObject(newGameButton);
+        }
+    }
+    private void SetToPlayerColors()
+    {
+        Color color = PlayerProperties.playerColor;
+        menuButtonImage.color = color;
+        newGameButtonImage.color = color;
+        gameOverText.color = color;
     }
 }

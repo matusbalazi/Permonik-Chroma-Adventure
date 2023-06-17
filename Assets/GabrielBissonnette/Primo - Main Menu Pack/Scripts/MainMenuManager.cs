@@ -101,6 +101,7 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         RandomColor();
         SetStartUI();
         ProcessLinks();
@@ -248,7 +249,7 @@ public class MainMenuManager : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-                 Application.Quit();
+        Application.Quit();
 #endif
     }
     #endregion
