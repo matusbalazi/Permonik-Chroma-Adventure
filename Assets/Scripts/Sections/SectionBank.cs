@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SectionBank : MonoBehaviour
+[CreateAssetMenu]
+public class SectionBank : ScriptableObject
 {
-    [SerializeField] private List<GameObject> sectionsEasy;
+    [SerializeField] private List<GameObject> sectionsEasy; 
     [SerializeField] private List<GameObject> sectionsMedium;
     [SerializeField] private List<GameObject> sectionsHard;
 

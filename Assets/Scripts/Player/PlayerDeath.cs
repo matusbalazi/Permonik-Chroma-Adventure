@@ -33,6 +33,11 @@ public class PlayerDeath : MonoBehaviour
             return;
         }
 
+        //else if (WaterRise.WaterPos.y > transform.position.y - 80)
+        //{
+        //    GameProperties.isEnd = true;
+        //}
+
         if (PlayerProperties.playerLifes > 0)
         {
             PlayerProperties.playerLifes--;

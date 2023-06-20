@@ -45,3 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4265448161
+    locked: 0
+  - name: Terrain
+    uniqueID: 2595030727
+    locked: 0
+  - name: InGameObjects
+    uniqueID: 130375209
+    locked: 0
