@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7789098590879178649}
   - component: {fileID: -5363906893300704889}
+  - component: {fileID: 7854559391814423796}
   m_Layer: 0
   m_Name: Section_2
   m_TagString: Untagged
@@ -51,6 +52,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endsOnLvl: 0
+--- !u!114 &7854559391814423796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789098590879178648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0140dd3efeca9824fa08b8595d4d66e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kvapel_Top: {fileID: 3768603699702725791, guid: d0be6ff3ce00d7c40b7f051bebe01413, type: 3}
+  kvapel_Bott: {fileID: 4284835290988021362, guid: b7e7a702ec4e5214a8affe516b9aad2f, type: 3}
+  pos_Gr1: {fileID: 8416839855913961321}
+  pos_Gr2: {fileID: 6624800671171022192}
+  pos_Celing: {fileID: 2406334884311145472}
 --- !u!1001 &968071742638248445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,6 +194,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7789098590879178649}
     m_Modifications:
+    - target: {fileID: 8236804422132100012, guid: bd109aeedff33cb4690ba02ca54f4293, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236804422132100012, guid: bd109aeedff33cb4690ba02ca54f4293, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236804422132100017, guid: bd109aeedff33cb4690ba02ca54f4293, type: 3}
+      propertyPath: m_Name
+      value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236804422132100019, guid: bd109aeedff33cb4690ba02ca54f4293, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236804422132100019, guid: bd109aeedff33cb4690ba02ca54f4293, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1837627146972074635, guid: 07ddc9dd0692f99459cbc000b7edbcf0, type: 3}
       propertyPath: m_Size.x
       value: 300
@@ -185,8 +223,8 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2706818475858948902, guid: 07ddc9dd0692f99459cbc000b7edbcf0, type: 3}
-      propertyPath: m_Name
-      value: Respawn
+      propertyPath: 
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4620770823047698698, guid: 07ddc9dd0692f99459cbc000b7edbcf0, type: 3}
       propertyPath: m_RootOrder

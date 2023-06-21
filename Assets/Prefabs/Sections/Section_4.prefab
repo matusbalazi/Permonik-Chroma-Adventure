@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 971503113230930047}
   - component: {fileID: 3342327159269369850}
+  - component: {fileID: 419568937013060546}
   m_Layer: 0
   m_Name: Section_4
   m_TagString: Untagged
@@ -54,6 +55,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endsOnLvl: 0
+--- !u!114 &419568937013060546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971503113230930046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0140dd3efeca9824fa08b8595d4d66e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kvapel_Top: {fileID: 3768603699702725791, guid: d0be6ff3ce00d7c40b7f051bebe01413, type: 3}
+  kvapel_Bott: {fileID: 4284835290988021362, guid: b7e7a702ec4e5214a8affe516b9aad2f, type: 3}
+  pos_Gr1: {fileID: 7760444931662074826}
+  pos_Gr2: {fileID: 4452610023638025272}
+  pos_Celing: {fileID: 4307436566427068330}
 --- !u!1 &1308321225545226848
 GameObject:
   m_ObjectHideFlags: 0

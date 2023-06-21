@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 246494875372977603}
   - component: {fileID: 5185939319821814953}
+  - component: {fileID: 3840338813647198009}
   m_Layer: 0
   m_Name: Section_5
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   - {fileID: 5050173749767979388}
   - {fileID: 1331433616737302098}
   - {fileID: 1935700444669462506}
-  - {fileID: 1688964993507792683}
+  - {fileID: 876322998369465727}
   - {fileID: 7516977168713944467}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,7 +51,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endsOnLvl: 1
---- !u!1001 &1764203745884701178
+--- !u!114 &3840338813647198009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246494875372977602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0140dd3efeca9824fa08b8595d4d66e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kvapel_Top: {fileID: 3768603699702725791, guid: d0be6ff3ce00d7c40b7f051bebe01413, type: 3}
+  kvapel_Bott: {fileID: 4284835290988021362, guid: b7e7a702ec4e5214a8affe516b9aad2f, type: 3}
+  pos_Gr1: {fileID: 1331433616737302098}
+  pos_Gr2: {fileID: 1331433616737302098}
+  pos_Celing: {fileID: 876322998369465727}
+--- !u!1001 &225899461381202862
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -663,10 +681,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230727acf35e60b45ab96da26da32d75, type: 3}
---- !u!4 &1688964993507792683 stripped
+--- !u!4 &876322998369465727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1084203416164832977, guid: 230727acf35e60b45ab96da26da32d75, type: 3}
-  m_PrefabInstance: {fileID: 1764203745884701178}
+  m_PrefabInstance: {fileID: 225899461381202862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2709218458315329971
 PrefabInstance:

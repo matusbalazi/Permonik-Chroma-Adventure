@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d1d44aad278a79b41a1687de5506c7c6
+<<<<<<<< HEAD:Assets/Textures/Kvap1.PNG.meta
+guid: 499f9bf971430d5478cf6f617a337ad9
+========
+guid: 18dd7e7b533b0da45a499e163c065710
+>>>>>>>> main:Assets/3D/Ground/Old/zem_edge.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
