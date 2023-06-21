@@ -27,6 +27,11 @@ public class PauseGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown("StartButtonPause"))
         {
+            if (GameProperties.isEnded)
+            {
+                return;
+            }
+
             if (pauseScreen.activeSelf)
             {
                 Unpause();

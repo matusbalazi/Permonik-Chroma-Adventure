@@ -14,7 +14,7 @@ public class HUD : MonoBehaviour
         PlayerProperties.distance = distance >= 0 ? distance : 0;
         PlayerProperties.score = distance >= 0 ? distance : 0;
         distanceValue.text = PlayerProperties.score.ToString();
-        livesValue.text = PlayerProperties.playerLifes.ToString();
-        gemsValue.text = PlayerProperties.playerGems.ToString();
+        livesValue.text = PlayerProperties.lives.ToString();
+        gemsValue.text = PlayerProperties.gems.ToString();
     }
 }

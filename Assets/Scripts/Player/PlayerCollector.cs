@@ -11,10 +11,10 @@ public class PlayerCollector : MonoBehaviour
             switch (other.GetComponent<SpawnCollectable>().Type)
             {
                 case CollectableType.gem:
-                    PlayerProperties.playerGems++;
+                    PlayerProperties.gems++;
                     break;
                 case CollectableType.life:
-                    PlayerProperties.playerLifes++;
+                    PlayerProperties.lives++;
                     break;
                 default:
                     Debug.Log("Nieco ine");

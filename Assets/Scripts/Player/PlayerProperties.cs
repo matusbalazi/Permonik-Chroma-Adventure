@@ -12,8 +12,8 @@ public static class PlayerProperties
     public static float timeUntilStickRegen = 2f;
     public static float remainingColorTime = 10f;
     public static float timeUntilColorReset = 10f;
-    public static int playerLifes = 3;
-    public static int playerGems = 0;
+    public static int lives = 3;
+    public static int gems = 0;
     public static float colorChangeCooldown = 10f;
     public static int score = 0;
     public static int distance = 0;
