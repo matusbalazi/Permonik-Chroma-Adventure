@@ -20,22 +20,22 @@ public class PlayerColor : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("AButtonGreen") && PlayerProperties.playerColor != Colors.green)
+        if ((Input.GetButtonDown("AButtonGreen") || Input.GetKey(KeyCode.G)) && PlayerProperties.playerColor != Colors.green)
         {
             ChangeColor(Colors.green);
         }
 
-        else if (Input.GetButtonDown("BButtonRed") && PlayerProperties.playerColor != Colors.red)
+        else if ((Input.GetButtonDown("BButtonRed") || Input.GetKey(KeyCode.R)) && PlayerProperties.playerColor != Colors.red)
         {
             ChangeColor(Colors.red);
         }
 
-        else if (Input.GetButtonDown("XButtonBlue") && PlayerProperties.playerColor != Colors.blue)
+        else if ((Input.GetButtonDown("XButtonBlue") || Input.GetKey(KeyCode.B)) && PlayerProperties.playerColor != Colors.blue)
         {
             ChangeColor(Colors.blue);
         }
 
-        else if (Input.GetButtonDown("YButtonYellow") && PlayerProperties.playerColor != Colors.yellow)
+        else if ((Input.GetButtonDown("YButtonYellow") || Input.GetKey(KeyCode.Y)) && PlayerProperties.playerColor != Colors.yellow)
         {
             ChangeColor(Colors.yellow);
         }

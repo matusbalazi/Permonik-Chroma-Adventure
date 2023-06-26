@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public AudioSource footstepsSFX;
     private Rigidbody2D rb;
     private float speedForce;
 
@@ -13,12 +14,23 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector2 movement = new(moveHorizontal, 0f);
-        transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
-        speedForce = PlayerProperties.speedForce;
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            Vector2 movement = new(moveHorizontal, 0f);
+            transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
+            speedForce = PlayerProperties.speedForce;
 
-
+            if (!footstepsSFX.isPlaying)
+            {
+                footstepsSFX.Play();
+            }
+        } 
+        else
+        {
+            footstepsSFX.Stop();
+        }
+        
         /*
          *  -----------------------------------------------------------------
          *  ALTERNATIVE MOVEMENT USING RIGIDBODY

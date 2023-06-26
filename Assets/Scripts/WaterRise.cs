@@ -3,7 +3,7 @@ using UnityEngine;
 public class WaterRise : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] float defaultSpeed = 5f, diff;
+    [SerializeField] float defaultSpeed, diff;
     public static Vector3 WaterPos { get; set; }
 
     void Start()

@@ -8,6 +8,10 @@ TagManager:
   - Platform
   - PlayerTrigger
   - Ceiling
+  - Enemy
+  - RockRenderer
+  - Rock
+  - Web
   layers:
   - Default
   - TransparentFX
