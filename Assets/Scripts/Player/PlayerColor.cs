@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
@@ -9,8 +10,8 @@ public class PlayerColor : MonoBehaviour
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
-        renderer.material.color = Color.white;
+        renderer = transform.Find("Run").Find("mask").GetComponent<MeshRenderer>();
+        //renderer.material.color = Color.white;
     }
 
     void Update()
@@ -48,9 +49,15 @@ public class PlayerColor : MonoBehaviour
         if (PlayerProperties.remainingColorTime <= 0 && PlayerProperties.timeUntilColorReset >= 0)
         {
             PlayerProperties.timeUntilColorReset -= Time.deltaTime;
-            renderer.material.color = Color
-                .Lerp(PlayerProperties.displayedColor, originalColor, Time.deltaTime / (colorResetDuration / 2));
-            PlayerProperties.displayedColor = renderer.material.color;
+
+            renderer.materials[0].color = Color.Lerp(
+                PlayerProperties.displayedColor, 
+                originalColor, 
+                Time.deltaTime / (colorResetDuration / 2)
+                );
+
+               // .Lerp(PlayerProperties.displayedColor, originalColor, Time.deltaTime / (colorResetDuration / 2));
+            PlayerProperties.displayedColor = renderer.materials[0].color;
         }
 
         if (PlayerProperties.timeUntilColorReset <= 0)
@@ -63,7 +70,14 @@ public class PlayerColor : MonoBehaviour
     void ChangeColor(Color newColor)
     {
         PlayerProperties.playerColor = newColor;
-        renderer.material.color = newColor;
+
+        renderer.materials[0].color = Color.Lerp(
+            PlayerProperties.displayedColor,
+            newColor,
+            1f
+        );
+            //newMaterial;
+            //.material.color = newColor;
         PlayerProperties.displayedColor = newColor;
         PlayerProperties.timeUntilColorReset = colorResetDuration;
         PlayerProperties.remainingColorTime = colorDuration;

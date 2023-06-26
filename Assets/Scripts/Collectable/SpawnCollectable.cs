@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnCollectable : MonoBehaviour
 {
-    public enum CollectableType { gem, life, boost };
+    public enum CollectableType { gem, life, speedBoost, speedSlow, longStick };
     public CollectableType Type { get; set; }
 
     void Start()
@@ -17,7 +17,21 @@ public class SpawnCollectable : MonoBehaviour
         else if (rnd <= 45)
         {
             transform.Find("QueMark").gameObject.SetActive(true);
-            Type = CollectableType.boost;
+            switch (Random.Range(0, 2))
+            {
+                case 0:
+                    Type = CollectableType.speedBoost;
+                    break;
+                case 1:
+                    Type = CollectableType.speedSlow;
+                    break;
+                case 2:
+                    Type = CollectableType.longStick;
+                    break;
+                default:
+                    Debug.Log("Spawnla sa dalsia moznost");
+                    break;
+            }
         }
         else
         {

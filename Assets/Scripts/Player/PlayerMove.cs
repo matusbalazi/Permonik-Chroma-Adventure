@@ -25,12 +25,12 @@ public class PlayerMove : MonoBehaviour
             {
                 footstepsSFX.Play();
             }
-        } 
+        }
         else
         {
             footstepsSFX.Stop();
         }
-        
+
         /*
          *  -----------------------------------------------------------------
          *  ALTERNATIVE MOVEMENT USING RIGIDBODY

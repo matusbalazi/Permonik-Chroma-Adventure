@@ -22,13 +22,13 @@ public class PlayerJump : MonoBehaviour
     {
         if (Mathf.Abs(rb.velocity.y) < 0.001f)
         {
-            PlayerProperties.speedForce = 120f;
+            //PlayerProperties.speedForce = 120f;
 
             if ((Input.GetAxis("RTJump") > 0 || Input.GetKey(KeyCode.Space)) && IsGrounded())
             {
                 PlayerProperties.isStickActive = false;
 
-                PlayerProperties.speedForce = 100f;
+                //PlayerProperties.speedForce = 100f;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
         }

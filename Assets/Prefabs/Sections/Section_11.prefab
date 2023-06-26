@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1634809596217491288}
   - component: {fileID: 2967001129203366983}
+  - component: {fileID: 5443881906786573353}
   m_Layer: 0
   m_Name: Section_11
   m_TagString: Untagged
@@ -37,6 +38,7 @@ Transform:
   - {fileID: 9053714599650246192}
   - {fileID: 4098224919640186287}
   - {fileID: 7709713309129963409}
+  - {fileID: 2067532092247596702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,6 +55,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endsOnLvl: 2
+--- !u!114 &5443881906786573353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634809596217491289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0140dd3efeca9824fa08b8595d4d66e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kvapel_Top: {fileID: 3768603699702725791, guid: d0be6ff3ce00d7c40b7f051bebe01413, type: 3}
+  kvapel_Bott: {fileID: 4284835290988021362, guid: b7e7a702ec4e5214a8affe516b9aad2f, type: 3}
+  pos_Gr1: {fileID: 4098224919640186287}
+  pos_Gr2: {fileID: 9053714599650246192}
+  pos_Ceil1: {fileID: 2067532092247596702}
+  pos_Ceil2: {fileID: 0}
+  leftToRight: 25
+--- !u!1 &7353544620910508256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2067532092247596702}
+  m_Layer: 0
+  m_Name: TopPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2067532092247596702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353544620910508256}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -410, y: 70, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1634809596217491288}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &569917328007384453
 PrefabInstance:
   m_ObjectHideFlags: 0
