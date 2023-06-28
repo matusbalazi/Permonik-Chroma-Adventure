@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class PlayerStick : MonoBehaviour
 {
+    private GameObject model;
     private Rigidbody2D rb;
     private float speedForce;
     private readonly float fullStickTime = 8f;
     private readonly float timeUntilStickRegen = 2f;
     void Start()
     {
+        model = GameObject.Find("Model");
         rb = GetComponent<Rigidbody2D>();
         speedForce = PlayerProperties.speedForce;
     }
@@ -17,6 +19,8 @@ public class PlayerStick : MonoBehaviour
     {
         if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive)
         {
+            //model.GetComponent<Animator>().Play("Hanging Idle");
+
             if (PlayerProperties.remainingStickTime >= 0)
             {
                 PlayerProperties.remainingStickTime -= Time.deltaTime;
@@ -25,7 +29,7 @@ public class PlayerStick : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 float moveVertical = Input.GetAxis("Vertical");
                 Vector2 movement = new(0f, moveVertical);
-                transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
+                transform.Translate(speedForce * Time.deltaTime * movement, Space.World);               
             }
         }
 

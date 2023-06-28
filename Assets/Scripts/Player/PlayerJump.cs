@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
+    public AudioSource jumpSFX;
     private GameObject footstepsSFX;
+    private GameObject model;
     private Rigidbody2D rb;
     private float jumpForce;
     private float gravityForce;
@@ -12,6 +14,7 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         footstepsSFX = GameObject.Find("FootstepsSFX");
+        model = GameObject.Find("Model");
         rb = GetComponent<Rigidbody2D>();
         jumpForce = PlayerProperties.jumpForce;
         gravityForce = PlayerProperties.gravityForce;
@@ -30,6 +33,24 @@ public class PlayerJump : MonoBehaviour
 
                 //PlayerProperties.speedForce = 100f;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+                if (!jumpSFX.isPlaying)
+                {
+                    jumpSFX.Play();
+                }
+
+                model.GetComponent<Animator>().Play("Jump");
+            } 
+            else
+            {
+                if (Input.GetAxis("Horizontal") != 0 || !IsGrounded())
+                {
+                    model.GetComponent<Animator>().Play("Standard Run");
+                } 
+                else
+                {
+                    model.GetComponent<Animator>().Play("Idle");
+                }
             }
         }
         else

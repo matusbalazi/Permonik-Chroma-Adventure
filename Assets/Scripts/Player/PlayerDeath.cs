@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour
 {
+    public AudioSource respawnSFX;
+    public AudioSource deathSFX;
     private readonly int deathHeight = -100;
     private readonly Vector3 respawnPosition = new(0f, 10f, 0f);
     [SerializeField] private GameObject menuButton;
@@ -35,11 +37,21 @@ public class PlayerDeath : MonoBehaviour
 
         if (PlayerProperties.lives > 0)
         {
+            if (!respawnSFX.isPlaying)
+            {
+                respawnSFX.Play();
+            }
+
             PlayerProperties.lives--;
             transform.position = respawnPosition;
         }
         else
         {
+            if (!deathSFX.isPlaying)
+            {
+                deathSFX.Play();
+            }
+
             Time.timeScale = 0;
             deathScreen.SetActive(true);
             HighscoreManager.AddScore(PlayerProperties.score);
@@ -48,7 +60,7 @@ public class PlayerDeath : MonoBehaviour
             GameProperties.isPaused = true;
             GameProperties.isEnded = true;
             EventSystem.current.SetSelectedGameObject(newGameButton);
-        }
+        }       
     }
 
     private bool HitTaken()

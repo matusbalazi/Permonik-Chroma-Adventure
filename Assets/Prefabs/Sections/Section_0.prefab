@@ -649,6 +649,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8843443524117495740, guid: 84793cba24beabe46bbaca7742e101fe, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843443524117495740, guid: 84793cba24beabe46bbaca7742e101fe, type: 3}
       propertyPath: m_Points.Array.size
       value: 35
       objectReference: {fileID: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpikeMove : MonoBehaviour
 {
+    public AudioSource spikeSFX;
     private GameObject player;
     private GameObject mainCamera;
     public bool isAboveGround;
@@ -35,6 +36,11 @@ public class SpikeMove : MonoBehaviour
                 if (this.gameObject.transform.localPosition.y <= (defaultPosition + travelDistance))
                 {
                     transform.Translate(Vector2.up * Time.deltaTime * movementSpeed, Space.World);
+
+                    if (!spikeSFX.isPlaying)
+                    {
+                        spikeSFX.Play();
+                    }
                 }
             }
 
@@ -43,6 +49,8 @@ public class SpikeMove : MonoBehaviour
                 if (this.gameObject.transform.localPosition.y >= (defaultPosition - travelDistance))
                 {
                     transform.Translate(Vector2.down * Time.deltaTime * movementSpeed, Space.World);
+
+                    spikeSFX.Stop();
                 }
             }
 
@@ -85,6 +93,8 @@ public class SpikeMove : MonoBehaviour
         }
         else
         {
+            spikeSFX.Stop();
+
             if (this.gameObject.transform.localPosition.y < defaultPosition)
             {
                 transform.Translate(Vector2.up * Time.deltaTime * movementSpeed, Space.World);

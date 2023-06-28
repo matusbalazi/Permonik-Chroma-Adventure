@@ -7,13 +7,14 @@ public class EnemyMove : MonoBehaviour
 {
     public static bool isInDefaultPosition = true;
     public static bool isPlayerClose = false;
+    public AudioSource spiderSFX;
     private GameObject player;
     private GameObject mainCamera;
     private float distanceThreshold = 70f;
     private float travelDistance = 50f;
     private float movementSpeed = 30f;
     private Rigidbody2D rb;
-    private float defaultPosition;  
+    private float defaultPosition;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class EnemyMove : MonoBehaviour
 
         if (Mathf.Abs(distance) >= distanceThreshold)
         {
+            spiderSFX.Stop();
+
             isPlayerClose = false;
 
             if (Mathf.Round(this.gameObject.transform.eulerAngles.y) == 0 && this.gameObject.transform.localPosition.x >= (defaultPosition - travelDistance))
@@ -53,6 +56,11 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
+            if (!spiderSFX.isPlaying)
+            {
+                spiderSFX.Play();            
+            }
+
             isPlayerClose = true;
 
             if (Mathf.Round(this.gameObject.transform.eulerAngles.y) == 0 && player.GetComponent<Rigidbody2D>().position.x >= rb.position.x)

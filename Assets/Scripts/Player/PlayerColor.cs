@@ -10,7 +10,7 @@ public class PlayerColor : MonoBehaviour
 
     void Start()
     {
-        renderer = transform.Find("Run").Find("mask").GetComponent<MeshRenderer>();
+        renderer = GameObject.Find("mask").GetComponent<MeshRenderer>();
         //renderer.material.color = Color.white;
     }
 
