@@ -42,10 +42,10 @@ public class SectionGenerator : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerProperties.Checkpoint = transform.position;
-
         if (!collision.CompareTag("Player"))
             return;
+
+        PlayerProperties.Checkpoint = transform.position;
 
         if (lastSectionPosition.GetComponent<Section>().GetEndsOnLvl() > 0)
             lvl += 100 * lastSectionPosition.GetComponent<Section>().GetEndsOnLvl();

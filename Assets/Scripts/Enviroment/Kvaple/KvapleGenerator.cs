@@ -44,9 +44,9 @@ public class KvapleGenerator : MonoBehaviour
     void GenerateOnGround(Transform pos)
     {
         Vector3 bott = new(
-            pos.position.x + Random.Range((-pos.localScale.x / 2) + 30, (pos.localScale.x / 2) - 30),
+            pos.position.x + Random.Range((-pos.localScale.x + 20) / 2 , pos.localScale.x - 20 / 2 ),
             pos.position.y + 70,
-            pos.position.z);
+            5);
         Instantiate(kvapel_Bott, bott, Quaternion.identity, this.gameObject.transform);
     }
     void GenerateOnCeiling(Transform pos)
@@ -54,7 +54,7 @@ public class KvapleGenerator : MonoBehaviour
         Vector3 top = new(
             pos.position.x + Random.Range(-leftToRight, leftToRight),
             pos.position.y - 25,
-            pos.position.z);
+            5);
         Instantiate(kvapel_Top, top, Quaternion.identity, this.gameObject.transform);
     }
 }

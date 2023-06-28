@@ -2,13 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
 public class PlayerDeath : MonoBehaviour
 {
     public AudioSource respawnSFX;
     public AudioSource deathSFX;
     private readonly int deathHeight = -100;
-    private readonly Vector3 respawnPosition = new(0f, 10f, 0f);
+    //private Vector3 respawnPosition =     
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject newGameButton;
     [SerializeField] private GameObject deathScreen;
@@ -18,9 +17,11 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private GameObject controller;
     private XMLHighscoreManager HighscoreManager;
+    private bool respawned = false;
 
     private void Start()
     {
+        PlayerProperties.Checkpoint = new(0, 15, 0);
         HighscoreManager = controller.GetComponent<XMLHighscoreManager>();
     }
     private void Update()
@@ -30,12 +31,12 @@ public class PlayerDeath : MonoBehaviour
             return;
         }
 
-        if (!HitTaken())
+        if (!HitTaken(null))
         {
             return;
         }
 
-        if (PlayerProperties.lives > 0)
+        if (PlayerProperties.lives > 1)
         {
             if (!respawnSFX.isPlaying)
             {
@@ -43,7 +44,9 @@ public class PlayerDeath : MonoBehaviour
             }
 
             PlayerProperties.lives--;
-            transform.position = respawnPosition;
+            transform.position = PlayerProperties.Checkpoint;
+            WaterRise.WaterPos.Set(transform.position.x, WaterRise.WaterPos.y - 300, WaterRise.WaterPos.z);
+            respawned = false;
         }
         else
         {
@@ -60,18 +63,23 @@ public class PlayerDeath : MonoBehaviour
             GameProperties.isPaused = true;
             GameProperties.isEnded = true;
             EventSystem.current.SetSelectedGameObject(newGameButton);
-        }       
+        }
     }
 
-    private bool HitTaken()
+    private bool HitTaken(Collider2D collision)
     {
+
         if (transform.position.y < deathHeight)
+        {
+            return true;
+        }
+        else if (collision != null)
         {
             return true;
         }
         else if (WaterRise.WaterPos.y > transform.position.y - 80)
         {
-            PlayerProperties.lives = 0;
+            //PlayerProperties.lives = 0;
             return true;
         }
         return false;
@@ -83,5 +91,14 @@ public class PlayerDeath : MonoBehaviour
         menuButtonImage.color = color;
         newGameButtonImage.color = color;
         gameOverText.color = color;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Respawn") && respawned == false)
+        {
+            respawned = true;
+            HitTaken(collision);
+        }
     }
 }

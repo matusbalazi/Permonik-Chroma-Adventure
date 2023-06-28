@@ -25,13 +25,15 @@ public class PlayerJump : MonoBehaviour
     {
         if (Mathf.Abs(rb.velocity.y) < 0.001f)
         {
-            //PlayerProperties.speedForce = 120f;
+            if (!PlayerCollector.isSpeedModified)
+                PlayerProperties.speedForce = 110f;
 
             if ((Input.GetAxis("RTJump") > 0 || Input.GetKey(KeyCode.Space)) && IsGrounded())
             {
                 PlayerProperties.isStickActive = false;
 
-                //PlayerProperties.speedForce = 100f;
+                if (!PlayerCollector.isSpeedModified)
+                    PlayerProperties.speedForce = 110f;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
                 if (!jumpSFX.isPlaying)

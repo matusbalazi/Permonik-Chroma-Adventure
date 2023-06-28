@@ -7,7 +7,7 @@ public class EnemyShoot : MonoBehaviour
 {
     public GameObject colorIndicator;
     public List<GameObject> stringsProjectiles = new List<GameObject>();
-    private float fireForce = 100f;
+    private float fireForce = 110f;
     private float remainingShootingTime;
     private float colorIndicatorTime;
     private Color randomColor;
@@ -18,8 +18,8 @@ public class EnemyShoot : MonoBehaviour
     private void Start()
     {
         numberOfShots = stringsProjectiles.Count;
-        remainingShootingTime = Random.Range(1f, 2.5f);
-        colorIndicatorTime = Random.Range(0.5f, remainingShootingTime);
+        remainingShootingTime = Random.Range(0.8f, 2f);
+        colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);
         colorIndicator.GetComponent<SkinnedMeshRenderer>().material.color = colorIndicator.GetComponent<SkinnedMeshRenderer>().materials[0].color;
     }
 
@@ -43,7 +43,7 @@ public class EnemyShoot : MonoBehaviour
                 if (colorIndicatorTime <= 0)
                 {
                     colorIndicator.GetComponent<SkinnedMeshRenderer>().material.color = randomColor;
-                    colorIndicatorTime = Random.Range(0.5f, remainingShootingTime);
+                    colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);
                 }
 
                 remainingShootingTime -= Time.deltaTime;
@@ -60,8 +60,8 @@ public class EnemyShoot : MonoBehaviour
                 stringsProjectiles[stringsProjectiles.Count - 1].GetComponent<Rigidbody2D>().AddForce((EnemyMove.isInDefaultPosition ? Vector2.left : Vector2.right) * fireForce, ForceMode2D.Impulse);
                 stringsProjectiles[stringsProjectiles.Count - 1].transform.SetParent(null);
                 StartCoroutine(DestroyStrings());               
-                remainingShootingTime = Random.Range(1f, 2.5f);
-                colorIndicatorTime = Random.Range(0.5f, remainingShootingTime);
+                remainingShootingTime = Random.Range(0.8f, 2f);
+                colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);
                 numberOfShots--;
             }
         }
@@ -69,8 +69,8 @@ public class EnemyShoot : MonoBehaviour
         {
             colorIndicator.GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
             wasColorChose = false;
-            remainingShootingTime = Random.Range(1f, 2.5f);
-            colorIndicatorTime = Random.Range(0.5f, remainingShootingTime);
+            remainingShootingTime = Random.Range(0.8f, 2f);
+            colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);
         }
     }
 

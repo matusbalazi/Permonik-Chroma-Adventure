@@ -52,6 +52,9 @@ TagManager:
   - name: Background
     uniqueID: 4265448161
     locked: 0
+  - name: Kvaple
+    uniqueID: 3253097731
+    locked: 0
   - name: Terrain
     uniqueID: 2595030727
     locked: 0

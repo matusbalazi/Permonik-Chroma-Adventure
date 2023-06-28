@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RockMove : MonoBehaviour
 {
     public AudioSource rockSFX;
     private GameObject player;
-    private GameObject rockRenderer;
-    private GameObject spriteRenderer;
+    private SpriteRenderer spriteRenderer;
     private GameObject mainCamera;
     private Rigidbody2D rb;
     private float fallForce = 50f;
     private float remainingForceTime = 0.7f;
     private float rockPositionX;
     private Vector3 defaultRockPosition;
-    private float distanceThreshold;   
+    private float distanceThreshold;
     private bool wasCorrectColor = false;
     private bool wasReset = false;
     private bool rockFell = false;
@@ -24,15 +21,15 @@ public class RockMove : MonoBehaviour
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player");
-        rockRenderer = GameObject.Find("RockRenderer");
-        spriteRenderer = GameObject.Find("SpriteRenderer");
-        mainCamera = GameObject.Find("MainCamera");
+        mainCamera = player.transform.Find("MainCamera").gameObject;
+
         defaultRockPosition = this.gameObject.transform.position;
         rockPositionX = this.gameObject.transform.position.x;
         rb = GetComponent<Rigidbody2D>();
-        distanceThreshold = Random.Range(100f, 150f);
-        originalColor = rockRenderer.GetComponent<MeshRenderer>().material.color;
+        distanceThreshold = Random.Range(130f, 150f);
+        originalColor = spriteRenderer.color;
         previousColor = Color.white;
     }
 
@@ -48,13 +45,13 @@ public class RockMove : MonoBehaviour
             }
 
             rockFell = true;
-            fallForce = Random.Range(50f, 100f);
-            rb.AddForce(Vector2.left * fallForce, ForceMode2D.Impulse);
+            fallForce = Random.Range(200f, 250f);
+            Quaternion rotation = Quaternion.Euler(0, 0, 45);
+            rb.AddForce(rotation * Vector2.left * fallForce, ForceMode2D.Impulse);
             newColor = Colors.GetDifferentRandomColor(previousColor);
 
-            rockRenderer.GetComponent<MeshRenderer>().material.color = newColor;
-            spriteRenderer.GetComponent<SpriteRenderer>().material.color = newColor;
-            previousColor = rockRenderer.GetComponent<MeshRenderer>().material.color;
+            spriteRenderer.color = newColor;
+            previousColor = spriteRenderer.color;
         }
 
         if (wasCorrectColor)
@@ -74,8 +71,7 @@ public class RockMove : MonoBehaviour
 
         if (wasReset)
         {
-            rockRenderer.GetComponent<MeshRenderer>().material.color = originalColor;
-            spriteRenderer.GetComponent<SpriteRenderer>().material.color = originalColor;
+            spriteRenderer.color = originalColor;
 
             wasReset = false;
         }
@@ -93,14 +89,13 @@ public class RockMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (PlayerProperties.playerColor == rockRenderer.GetComponent<MeshRenderer>().material.color)
+            if (PlayerProperties.playerColor == spriteRenderer.color)
             {
                 wasCorrectColor = true;
-               
+
                 this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-                rockRenderer.GetComponent<MeshRenderer>().enabled = false;
-                spriteRenderer.GetComponent<SpriteRenderer>().enabled = false;
                 rockSFX.Stop();
+                spriteRenderer.enabled = false;
             }
             else
             {
@@ -110,20 +105,20 @@ public class RockMove : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
-                    player.transform.position = new(0f, 10f, 0f);
+                    //player.transform.position = new(0f, 10f, 0f);
                 }
                 else
                 {
                     GameProperties.isEnded = true;
                 }
-               
+
                 wasReset = true;
                 rockFell = false;
                 player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-                this.gameObject.transform.position = defaultRockPosition; 
+                this.gameObject.transform.position = defaultRockPosition;
                 rb.velocity = Vector3.zero;
                 rockSFX.Stop();
-            }       
+            }
         }
     }
 }

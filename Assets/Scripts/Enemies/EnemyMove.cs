@@ -10,9 +10,9 @@ public class EnemyMove : MonoBehaviour
     public AudioSource spiderSFX;
     private GameObject player;
     private GameObject mainCamera;
-    private float distanceThreshold = 70f;
-    private float travelDistance = 50f;
-    private float movementSpeed = 30f;
+    private float distanceThreshold = 110f;
+    private float travelDistance = 70f;
+    private float movementSpeed = 40f;
     private Rigidbody2D rb;
     private float defaultPosition;
 
@@ -95,7 +95,7 @@ public class EnemyMove : MonoBehaviour
             if (PlayerProperties.lives > 0)
             {
                 PlayerProperties.lives--;
-                player.transform.position = new(0f, 10f, 0f);
+                //player.transform.position = new(0f, 10f, 0f);
             }
             else
             {

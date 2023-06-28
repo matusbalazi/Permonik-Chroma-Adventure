@@ -1,10 +1,19 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static SpawnCollectable;
 
 public class PlayerCollector : MonoBehaviour
 {
+    public static bool isSpeedModified = false;
+    public static bool isStickModified = false;
+
+    [SerializeField] private GameObject powerUpHUD;
+
+    [SerializeField] private Sprite speedBoost;
+    [SerializeField] private Sprite speedSlow;
+    [SerializeField] private Sprite longStick;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Collectable"))
@@ -19,27 +28,18 @@ public class PlayerCollector : MonoBehaviour
                     break;
 
                 case CollectableType.speedBoost:
-                    Debug.Log(CollectableType.speedBoost);
-                    float helpSB = PlayerProperties.speedForce;
-                    PlayerProperties.speedForce = 200;
-                        StartCoroutine(Wait(5));
-                    PlayerProperties.speedForce = helpSB;
+                    StartCoroutine(SetPowerUpHUD("Speed Boost", null));
+                    StartCoroutine(ModifySpeed(10, 180));
                     break;
 
                 case CollectableType.speedSlow:
-                    Debug.Log(CollectableType.speedSlow);
-                    float helpSS = PlayerProperties.speedForce;
-                    PlayerProperties.speedForce = 50;
-                        StartCoroutine(Wait(5));
-                    PlayerProperties.speedForce = helpSS;
+                    StartCoroutine(SetPowerUpHUD("Speed Slow", null));
+                    StartCoroutine(ModifySpeed(5, 80));                    
                     break;
 
                 case CollectableType.longStick:
-                    Debug.Log(CollectableType.longStick);
-                    float helpLS = PlayerProperties.remainingStickTime;
-                    PlayerProperties.remainingStickTime = 200;
-                        StartCoroutine(Wait(20));
-                    PlayerProperties.remainingStickTime = helpLS;
+                    StartCoroutine(SetPowerUpHUD("Infinite Stick", null));
+                    StartCoroutine(ModifyStick(20,200));
                     break;
 
                 default:
@@ -49,9 +49,31 @@ public class PlayerCollector : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
-
-    private IEnumerator Wait(float time)
+    private IEnumerator ModifySpeed(float time, int speed)
     {
+        float originalSpeed = PlayerProperties.speedForce;
+        isSpeedModified = true;
+        PlayerProperties.speedForce = speed;
         yield return new WaitForSeconds(time);
+        isSpeedModified = false;
+        PlayerProperties.speedForce = originalSpeed;
+    }
+
+    private IEnumerator ModifyStick(float time, int stickTime)
+    {
+        float originalStickTime = PlayerProperties.remainingStickTime; 
+        isStickModified = true;
+        PlayerProperties.remainingStickTime = stickTime;
+        yield return new WaitForSeconds(time);
+        isStickModified = false;
+        PlayerProperties.remainingStickTime = originalStickTime;
+    }
+    private IEnumerator SetPowerUpHUD(string text, Sprite sprite)
+    {
+        powerUpHUD.SetActive(true);
+        powerUpHUD.GetComponent<Text>().text = text;
+        yield return new WaitForSeconds(2);
+        //powerUpHUD.transform.Find("PowerUpImg").GetComponent<SpriteRenderer>().sprite = sprite;
+        powerUpHUD.SetActive(false);
     }
 }

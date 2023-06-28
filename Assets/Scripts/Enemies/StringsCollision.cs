@@ -61,7 +61,7 @@ public class StringsCollision : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
-                    player.transform.position = new(0f, 10f, 0f);
+                    //player.transform.position = new(0f, 10f, 0f);
                 }
                 else
                 {

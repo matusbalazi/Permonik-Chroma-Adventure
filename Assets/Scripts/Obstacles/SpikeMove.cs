@@ -21,7 +21,7 @@ public class SpikeMove : MonoBehaviour
     {
         player = GameObject.Find("Player");
         mainCamera = GameObject.Find("MainCamera");
-        defaultPosition = this.gameObject.transform.position.y;
+        defaultPosition = transform.localPosition.y;
         colorChangeTime = Random.Range(2, 6);
     }
 
@@ -33,7 +33,7 @@ public class SpikeMove : MonoBehaviour
         {
             if (isBelowGround && !isAboveGround)
             {
-                if (this.gameObject.transform.localPosition.y <= (defaultPosition + travelDistance))
+                if (this.gameObject.transform.localPosition.y <= (defaultPosition + travelDistance*2))
                 {
                     transform.Translate(Vector2.up * Time.deltaTime * movementSpeed, Space.World);
 
@@ -46,7 +46,7 @@ public class SpikeMove : MonoBehaviour
 
             if (!isBelowGround && isAboveGround)
             {
-                if (this.gameObject.transform.localPosition.y >= (defaultPosition - travelDistance))
+                if (this.gameObject.transform.localPosition.y >= (defaultPosition - travelDistance/4))
                 {
                     transform.Translate(Vector2.down * Time.deltaTime * movementSpeed, Space.World);
 
@@ -54,13 +54,13 @@ public class SpikeMove : MonoBehaviour
                 }
             }
 
-            if (Mathf.Round(this.gameObject.transform.localPosition.y) == Mathf.Round(defaultPosition + travelDistance))
+            if (Mathf.Round(this.gameObject.transform.localPosition.y) == Mathf.Round(defaultPosition + travelDistance*2))
             {
                 isBelowGround = false;
                 isAboveGround = true;
             }
 
-            if (Mathf.Round(this.gameObject.transform.localPosition.y) == Mathf.Round(defaultPosition - travelDistance))
+            if (Mathf.Round(this.gameObject.transform.localPosition.y) == Mathf.Round(defaultPosition - travelDistance/4))
             {
                 isBelowGround = true;
                 isAboveGround = false;
@@ -133,7 +133,7 @@ public class SpikeMove : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
-                    player.transform.position = new(0f, 10f, 0f);
+                    //player.transform.position = new(0f, 10f, 0f);
                 }
                 else
                 {
