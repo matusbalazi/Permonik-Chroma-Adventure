@@ -17,7 +17,7 @@ public class SpawnCollectable : MonoBehaviour
         else if (rnd <= 45)
         {
             transform.Find("QueMark").gameObject.SetActive(true);
-            switch (Random.Range(0, 2))
+            switch (Random.Range(0, 3))
             {
                 case 0:
                     Type = CollectableType.speedBoost;

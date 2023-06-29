@@ -12,7 +12,7 @@ public class KvapleGenerator : MonoBehaviour
     [SerializeField] Transform pos_Ceil1;
     [SerializeField] Transform pos_Ceil2;
 
-    //location range
+    // location range
     [SerializeField] int leftToRight;
     void Start()
     {
@@ -20,7 +20,7 @@ public class KvapleGenerator : MonoBehaviour
             GenerateOnCeiling(pos_Ceil2);
         else if (pos_Ceil2 == null && pos_Ceil1 != null) 
             GenerateOnCeiling(pos_Ceil1);
-        else
+        else if (pos_Ceil1 != null && pos_Ceil2 != null)
             switch (Random.Range(0, 2))
             {
                 case 1: GenerateOnCeiling(pos_Ceil1); break;
@@ -33,7 +33,7 @@ public class KvapleGenerator : MonoBehaviour
             GenerateOnGround(pos_Gr2);
         else if (pos_Gr2 == null && pos_Gr1 != null)
             GenerateOnGround(pos_Gr1);
-        else
+        else if (pos_Gr1 != null && pos_Gr2 != null)
             switch (Random.Range(0, 2))
             {
                 case 1: GenerateOnGround(pos_Gr1); break;
@@ -47,7 +47,7 @@ public class KvapleGenerator : MonoBehaviour
             pos.position.x + Random.Range((-pos.localScale.x + 20) / 2 , pos.localScale.x - 20 / 2 ),
             pos.position.y + 70,
             5);
-        Instantiate(kvapel_Bott, bott, Quaternion.identity, this.gameObject.transform);
+        Instantiate(kvapel_Bott, bott, Quaternion.identity, transform);
     }
     void GenerateOnCeiling(Transform pos)
     {
@@ -55,6 +55,6 @@ public class KvapleGenerator : MonoBehaviour
             pos.position.x + Random.Range(-leftToRight, leftToRight),
             pos.position.y - 25,
             5);
-        Instantiate(kvapel_Top, top, Quaternion.identity, this.gameObject.transform);
+        Instantiate(kvapel_Top, top, Quaternion.identity, transform);
     }
 }

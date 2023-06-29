@@ -133,6 +133,7 @@ public class SpikeMove : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
+                    Destroy(gameObject);
                     //player.transform.position = new(0f, 10f, 0f);
                 }
                 else

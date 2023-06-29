@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 130375209
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a84e776780d66764abafb6a422931d06, type: 3}
   m_Color: {r: 0.7473315, g: 0.23529412, b: 0.78039217, a: 1}
@@ -124,6 +124,7 @@ MonoBehaviour:
   player: {fileID: 6349047311117262076, guid: 4f2833f344d03324da7705b9ba8002e5, type: 3}
   playerColor: {r: 0, g: 0, b: 0, a: 0}
   platformColor: {r: 0, g: 0, b: 0, a: 0}
+  currentPlayerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2605390040903180896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +143,7 @@ MonoBehaviour:
   chanceToBreak: 40
   timeToBreak: 1
   timeToRespawn: 3
-  brokenPlatform: {fileID: 21300000, guid: d79765025f5cf024bb9177494c4717f4, type: 3}
+  brokenPlatform: {fileID: 21300000, guid: ab37f99f1086f8d44ba44f8e14b3b038, type: 3}
 --- !u!1 &2421297401671549403
 GameObject:
   m_ObjectHideFlags: 0

@@ -96,7 +96,7 @@ public class PlayerJump : MonoBehaviour
         if (collision.gameObject.CompareTag("Ceiling"))
             isGrounded = false;
     }
-
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Ceiling"))
@@ -112,4 +112,5 @@ public class PlayerJump : MonoBehaviour
         if (other.gameObject.CompareTag("Ceiling"))
             isGrounded = false;
     }
+    */
 }
