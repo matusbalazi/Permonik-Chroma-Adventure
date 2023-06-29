@@ -3,11 +3,13 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public AudioSource footstepsSFX;
+    private GameObject model;
     private Rigidbody2D rb;
     private float speedForce;
 
     void Start()
     {
+        model = GameObject.Find("Model");
         rb = GetComponent<Rigidbody2D>();
         speedForce = PlayerProperties.speedForce;
     }
@@ -29,6 +31,16 @@ public class PlayerMove : MonoBehaviour
         else
         {
             footstepsSFX.Stop();
+        }
+
+        if (Input.GetAxis("Horizontal") >= 0)
+        {
+            model.transform.eulerAngles = new Vector3(0, 90, 0);
+        }
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            model.transform.eulerAngles = new Vector3(0, 270, 0);
         }
 
         /*

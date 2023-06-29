@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class PlayerStick : MonoBehaviour
 {
+    public AudioSource stickSFX;
     private GameObject model;
     private Rigidbody2D rb;
     private float speedForce;
     private readonly float fullStickTime = 8f;
     private readonly float timeUntilStickRegen = 2f;
+    private bool wasPlayedOnce = false;
+
     void Start()
     {
         model = GameObject.Find("Model");
@@ -18,11 +21,21 @@ public class PlayerStick : MonoBehaviour
     void Update()
     {
         if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive)
-        {
+        { 
             //model.GetComponent<Animator>().Play("Hanging Idle");
 
             if (PlayerProperties.remainingStickTime >= 0)
             {
+                if (!wasPlayedOnce)
+                {
+                    wasPlayedOnce = true;
+
+                    if (!stickSFX.isPlaying)
+                    {
+                        stickSFX.Play();
+                    }
+                }
+
                 PlayerProperties.remainingStickTime -= Time.deltaTime;
 
                 rb.gravityScale = 0f;
@@ -32,6 +45,15 @@ public class PlayerStick : MonoBehaviour
                 transform.Translate(speedForce * Time.deltaTime * movement, Space.World);               
             }
         }
+        else
+        {
+            if (Input.GetAxis("LTStick") <= 0 || !PlayerProperties.isStickActive)
+            {
+                wasPlayedOnce = false;
+            }
+
+            stickSFX.Stop();
+        }      
 
         if (Input.GetAxis("LTStick") == 0 && PlayerProperties.isStickActive)
         {
@@ -55,7 +77,7 @@ public class PlayerStick : MonoBehaviour
         {
             PlayerProperties.remainingStickTime++;
             PlayerProperties.timeUntilStickRegen = timeUntilStickRegen;
-        }
+        }        
     }
 
 }

@@ -8,6 +8,11 @@ public class PlayerCollector : MonoBehaviour
     public static bool isSpeedModified = false;
     public static bool isStickModified = false;
 
+    public AudioSource gemSFX;
+    public AudioSource pickUpSFX;
+    public AudioSource pickDownSFX;
+    public AudioSource newLifeSFX;
+
     [SerializeField] private GameObject powerUpHUD;
 
     [SerializeField] private Sprite speedBoost;
@@ -21,23 +26,48 @@ public class PlayerCollector : MonoBehaviour
             switch (other.GetComponent<SpawnCollectable>().Type)
             {
                 case CollectableType.gem:
+                    if (!gemSFX.isPlaying)
+                    {
+                        gemSFX.Play();
+                    }
+
                     PlayerProperties.gems++;
                     break;
                 case CollectableType.life:
-                    PlayerProperties.lives++;
+                    if (!newLifeSFX.isPlaying)
+                    {
+                        newLifeSFX.Play();
+                    }
+
+                    PlayerProperties.lives++;               
                     break;
 
                 case CollectableType.speedBoost:
+                    if (!pickUpSFX.isPlaying)
+                    {
+                        pickUpSFX.Play();
+                    }
+
                     StartCoroutine(SetPowerUpHUD("Speed Boost", null));
                     StartCoroutine(ModifySpeed(10, 180));
                     break;
 
                 case CollectableType.speedSlow:
+                    if (!pickDownSFX.isPlaying)
+                    {
+                        pickDownSFX.Play();
+                    }
+
                     StartCoroutine(SetPowerUpHUD("Speed Slow", null));
                     StartCoroutine(ModifySpeed(5, 80));                    
                     break;
 
                 case CollectableType.longStick:
+                    if (!pickUpSFX.isPlaying)
+                    {
+                        pickUpSFX.Play();
+                    }
+
                     StartCoroutine(SetPowerUpHUD("Infinite Stick", null));
                     StartCoroutine(ModifyStick(20,200));
                     break;

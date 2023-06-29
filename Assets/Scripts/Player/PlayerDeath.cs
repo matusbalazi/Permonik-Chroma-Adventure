@@ -6,6 +6,7 @@ public class PlayerDeath : MonoBehaviour
 {
     public AudioSource respawnSFX;
     public AudioSource deathSFX;
+    private GameObject model;
     private readonly int deathHeight = -100;
     //private Vector3 respawnPosition =     
     [SerializeField] private GameObject menuButton;
@@ -21,6 +22,7 @@ public class PlayerDeath : MonoBehaviour
 
     private void Start()
     {
+        model = GameObject.Find("Model");
         PlayerProperties.Checkpoint = new(0, 15, 0);
         HighscoreManager = controller.GetComponent<XMLHighscoreManager>();
     }
@@ -99,6 +101,11 @@ public class PlayerDeath : MonoBehaviour
         {
             respawned = true;
             HitTaken(collision);
+        }
+
+        if (collision.CompareTag("Fall"))
+        {
+            model.GetComponent<Animator>().Play("Falling Idle");
         }
     }
 }
