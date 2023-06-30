@@ -45,18 +45,37 @@ public class PlayerJump : MonoBehaviour
             } 
             else
             {
-                if (Input.GetAxis("Horizontal") != 0 || !IsGrounded())
+                
+
+                if (Input.GetAxis("Horizontal") != 0 && !PlayerProperties.isStickActive)
                 {
-                    model.GetComponent<Animator>().Play("Standard Run");
+                    model.GetComponent<Animator>().Play("Standard Run");                   
                 } 
                 else
-                {
-                    model.GetComponent<Animator>().Play("Idle");
+                {                   
+                    if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") == 0)
+                    {
+                        model.GetComponent<Animator>().Play("Hanging Idle");
+                    } 
+                    else if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") != 0)
+                    {
+                        model.GetComponent<Animator>().Play("Climbing Up Wall");
+                    }
+                    else
+                    {
+                        model.GetComponent<Animator>().Play("Idle");
+                    }                      
                 }
+                
             }
         }
         else
         {
+            if (Input.GetAxis("LTStick") == 0 && PlayerProperties.isStickActive)
+            {
+                model.GetComponent<Animator>().Play("Idle");
+            }
+       
             footstepsSFX.GetComponent<AudioSource>().Stop();
         }
     }

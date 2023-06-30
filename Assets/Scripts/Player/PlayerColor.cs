@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerColor : MonoBehaviour
 {
+    public AudioSource maskSFX;
     private Color originalColor = Color.white;
     private new Renderer renderer;
     private readonly float colorDuration = 10f;
@@ -69,6 +70,11 @@ public class PlayerColor : MonoBehaviour
 
     void ChangeColor(Color newColor)
     {
+        if (!maskSFX.isPlaying)
+        {
+            maskSFX.Play();
+        }
+
         PlayerProperties.playerColor = newColor;
 
         renderer.materials[0].color = Color.Lerp(

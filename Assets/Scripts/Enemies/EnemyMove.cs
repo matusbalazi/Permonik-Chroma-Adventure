@@ -9,6 +9,7 @@ public class EnemyMove : MonoBehaviour
     public static bool isPlayerClose = false;
     public AudioSource spiderSFX;
     private GameObject player;
+    private GameObject spiderModel;
     private GameObject mainCamera;
     private float distanceThreshold = 110f;
     private float travelDistance = 70f;
@@ -19,6 +20,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        spiderModel = GameObject.Find("SpiderModel");
         mainCamera = GameObject.Find("MainCamera");
         defaultPosition = this.gameObject.transform.localPosition.x;
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +32,8 @@ public class EnemyMove : MonoBehaviour
 
         if (Mathf.Abs(distance) >= distanceThreshold)
         {
+            spiderModel.GetComponent<Animator>().Play("SpiderWalk");
+
             spiderSFX.Stop();
 
             isPlayerClose = false;
@@ -56,6 +60,8 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
+            spiderModel.GetComponent<Animator>().Play("SpiderIdle");
+
             if (!spiderSFX.isPlaying)
             {
                 spiderSFX.Play();            

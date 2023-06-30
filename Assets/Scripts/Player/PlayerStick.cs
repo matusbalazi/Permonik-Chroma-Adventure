@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerStick : MonoBehaviour
@@ -21,9 +22,7 @@ public class PlayerStick : MonoBehaviour
     void Update()
     {
         if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive)
-        { 
-            //model.GetComponent<Animator>().Play("Hanging Idle");
-
+        {            
             if (PlayerProperties.remainingStickTime >= 0)
             {
                 if (!wasPlayedOnce)
@@ -34,7 +33,7 @@ public class PlayerStick : MonoBehaviour
                     {
                         stickSFX.Play();
                     }
-                }
+                }             
 
                 PlayerProperties.remainingStickTime -= Time.deltaTime;
 
@@ -79,5 +78,4 @@ public class PlayerStick : MonoBehaviour
             PlayerProperties.timeUntilStickRegen = timeUntilStickRegen;
         }        
     }
-
 }

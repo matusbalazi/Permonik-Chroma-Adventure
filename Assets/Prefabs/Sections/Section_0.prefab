@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 6122621767680064566}
   - component: {fileID: 1033530563946614519}
   m_Layer: 0
-  m_Name: Square
+  m_Name: FallingTrigger
   m_TagString: Fall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

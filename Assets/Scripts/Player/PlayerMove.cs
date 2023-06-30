@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
             footstepsSFX.Stop();
         }
 
-        if (Input.GetAxis("Horizontal") >= 0)
+        if (Input.GetAxis("Horizontal") > 0)
         {
             model.transform.eulerAngles = new Vector3(0, 90, 0);
         }
