@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StringsCollision : MonoBehaviour
 {
     private GameObject player;
     private GameObject mainCamera;
+    public AudioSource respawnSFX;
     private float remainingForceTime = 0.4f;
     private bool wasCorrectColor = false;
 
@@ -17,9 +16,9 @@ public class StringsCollision : MonoBehaviour
 
     void Update()
     {
-        if (wasCorrectColor) 
+        if (wasCorrectColor)
         {
-            
+
             if (remainingForceTime >= 0)
             {
                 remainingForceTime -= Time.deltaTime;
@@ -29,8 +28,8 @@ public class StringsCollision : MonoBehaviour
             {
                 wasCorrectColor = false;
                 player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-                remainingForceTime = 0.4f;                
-            }         
+                remainingForceTime = 0.4f;
+            }
         }
 
         if (mainCamera.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !mainCamera.GetComponent<Animator>().IsInTransition(0))
@@ -61,6 +60,10 @@ public class StringsCollision : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
+                    if (!respawnSFX.isPlaying)
+                    {
+                        respawnSFX.Play();
+                    }
                     //player.transform.position = new(0f, 10f, 0f);
                 }
                 else

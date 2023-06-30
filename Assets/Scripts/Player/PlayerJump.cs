@@ -23,6 +23,10 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        if (GameProperties.isPaused)
+        {
+            return;
+        }
         if (Mathf.Abs(rb.velocity.y) < 0.001f)
         {
             if (!PlayerCollector.isSpeedModified)
@@ -42,21 +46,21 @@ public class PlayerJump : MonoBehaviour
                 }
 
                 model.GetComponent<Animator>().Play("Jump");
-            } 
+            }
             else
             {
-                
+
 
                 if (Input.GetAxis("Horizontal") != 0 && !PlayerProperties.isStickActive)
                 {
-                    model.GetComponent<Animator>().Play("Standard Run");                   
-                } 
+                    model.GetComponent<Animator>().Play("Standard Run");
+                }
                 else
-                {                   
+                {
                     if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") == 0)
                     {
                         model.GetComponent<Animator>().Play("Hanging Idle");
-                    } 
+                    }
                     else if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") != 0)
                     {
                         model.GetComponent<Animator>().Play("Climbing Up Wall");
@@ -64,9 +68,9 @@ public class PlayerJump : MonoBehaviour
                     else
                     {
                         model.GetComponent<Animator>().Play("Idle");
-                    }                      
+                    }
                 }
-                
+
             }
         }
         else
@@ -75,7 +79,7 @@ public class PlayerJump : MonoBehaviour
             {
                 model.GetComponent<Animator>().Play("Idle");
             }
-       
+
             footstepsSFX.GetComponent<AudioSource>().Stop();
         }
     }

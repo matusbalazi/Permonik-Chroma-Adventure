@@ -6,7 +6,10 @@ public class ResetData : MonoBehaviour
     {
         GameProperties.isPaused = false;
         Time.timeScale = 1;
-        PlayerProperties.lives = 3;
+        PlayerProperties.lives = DefaultValues.lives;
+        PlayerProperties.speedForce = DefaultValues.speedForce;
+        PlayerProperties.jumpForce = DefaultValues.jumpForce;
+        PlayerProperties.gems = DefaultValues.gems;
         GameProperties.isEnded = false;
     }
 }

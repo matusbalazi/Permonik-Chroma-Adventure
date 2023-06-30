@@ -16,6 +16,12 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (GameProperties.isPaused)
+        {
+            footstepsSFX.Stop();
+            return;
+        }
+
         if (Input.GetAxis("Horizontal") != 0)
         {
             float moveHorizontal = Input.GetAxis("Horizontal");

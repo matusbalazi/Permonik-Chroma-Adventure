@@ -39,7 +39,7 @@ public class PlayerCollector : MonoBehaviour
                         newLifeSFX.Play();
                     }
 
-                    PlayerProperties.lives++;               
+                    PlayerProperties.lives++;
                     break;
 
                 case CollectableType.speedBoost:
@@ -59,7 +59,7 @@ public class PlayerCollector : MonoBehaviour
                     }
 
                     StartCoroutine(SetPowerUpHUD("Speed Slow", null));
-                    StartCoroutine(ModifySpeed(5, 80));                    
+                    StartCoroutine(ModifySpeed(5, 80));
                     break;
 
                 case CollectableType.longStick:
@@ -69,7 +69,7 @@ public class PlayerCollector : MonoBehaviour
                     }
 
                     StartCoroutine(SetPowerUpHUD("Infinite Stick", null));
-                    StartCoroutine(ModifyStick(20,200));
+                    StartCoroutine(ModifyStick(20, 200));
                     break;
 
                 default:
@@ -81,22 +81,20 @@ public class PlayerCollector : MonoBehaviour
     }
     private IEnumerator ModifySpeed(float time, int speed)
     {
-        float originalSpeed = PlayerProperties.speedForce;
         isSpeedModified = true;
         PlayerProperties.speedForce = speed;
         yield return new WaitForSeconds(time);
         isSpeedModified = false;
-        PlayerProperties.speedForce = originalSpeed;
+        PlayerProperties.speedForce = DefaultValues.speedForce;
     }
 
     private IEnumerator ModifyStick(float time, int stickTime)
     {
-        float originalStickTime = PlayerProperties.remainingStickTime; 
         isStickModified = true;
         PlayerProperties.remainingStickTime = stickTime;
         yield return new WaitForSeconds(time);
         isStickModified = false;
-        PlayerProperties.remainingStickTime = originalStickTime;
+        PlayerProperties.remainingStickTime = DefaultValues.remainingStickTime;
     }
     private IEnumerator SetPowerUpHUD(string text, Sprite sprite)
     {

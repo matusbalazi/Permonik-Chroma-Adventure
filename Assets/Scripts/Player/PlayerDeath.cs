@@ -33,17 +33,19 @@ public class PlayerDeath : MonoBehaviour
             return;
         }
 
+        if (GameProperties.isEnded)
+        {
+            EndGame();
+        }
+
         if (!HitTaken(null))
         {
             return;
         }
 
-        if (PlayerProperties.lives > 1)
+        if (PlayerProperties.lives > 0)
         {
-            if (!respawnSFX.isPlaying)
-            {
-                respawnSFX.Play();
-            }
+            respawnSFX.Play();
 
             PlayerProperties.lives--;
             transform.position = PlayerProperties.Checkpoint;
@@ -52,20 +54,21 @@ public class PlayerDeath : MonoBehaviour
         }
         else
         {
-            if (!deathSFX.isPlaying)
-            {
-                deathSFX.Play();
-            }
-
-            Time.timeScale = 0;
-            deathScreen.SetActive(true);
-            HighscoreManager.AddScore(PlayerProperties.score);
-            scoreText.text = "Score: " + PlayerProperties.score.ToString();
-            SetToPlayerColors();
-            GameProperties.isPaused = true;
-            GameProperties.isEnded = true;
-            EventSystem.current.SetSelectedGameObject(newGameButton);
+            EndGame();
         }
+    }
+
+    private void EndGame()
+    {
+        deathSFX.Play();
+        Time.timeScale = 0;
+        deathScreen.SetActive(true);
+        HighscoreManager.AddScore(PlayerProperties.score);
+        scoreText.text = "Score: " + PlayerProperties.score.ToString();
+        SetToPlayerColors();
+        GameProperties.isPaused = true;
+        GameProperties.isEnded = true;
+        EventSystem.current.SetSelectedGameObject(newGameButton);
     }
 
     private bool HitTaken(Collider2D collision)
@@ -81,7 +84,6 @@ public class PlayerDeath : MonoBehaviour
         }
         else if (WaterRise.WaterPos.y > transform.position.y - 80)
         {
-            //PlayerProperties.lives = 0;
             return true;
         }
         return false;
@@ -100,7 +102,6 @@ public class PlayerDeath : MonoBehaviour
         if (collision.CompareTag("Respawn") && respawned == false)
         {
             respawned = true;
-            HitTaken(collision);
         }
 
         if (collision.CompareTag("Fall"))

@@ -8,6 +8,7 @@ public class PauseGame : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject resumeButton;
+    [SerializeField] private Image newGameButtonImage;
     [SerializeField] private Image resumeButtonImage;
     [SerializeField] private Image menuButtonImage;
     [SerializeField] private TMP_Text pausedText;
@@ -71,9 +72,15 @@ public class PauseGame : MonoBehaviour
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
+    public void NewGameWithoutSaving()
+    {
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+    }
+
     private void SetToPlayerColors()
     {
         Color color = PlayerProperties.playerColor;
+        newGameButtonImage.color = color;
         resumeButtonImage.color = color;
         menuButtonImage.color = color;
         pausedText.color = color;
