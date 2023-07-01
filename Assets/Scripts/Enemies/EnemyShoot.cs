@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
+    public bool isInDefaultPosition = true;
     public GameObject colorIndicator;
     public List<GameObject> stringsProjectiles = new List<GameObject>();
+    private GameObject player;
     private float fireForce = 110f;
+    private float distanceThreshold = 110f;
     private float remainingShootingTime;
     private float colorIndicatorTime;
     private Color randomColor;
@@ -17,6 +20,7 @@ public class EnemyShoot : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         numberOfShots = stringsProjectiles.Count;
         remainingShootingTime = Random.Range(0.8f, 2f);
         colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);
@@ -25,7 +29,19 @@ public class EnemyShoot : MonoBehaviour
 
     void Update()
     {
-        if (EnemyMove.isPlayerClose && numberOfShots > 0)
+        if (player.GetComponent<Rigidbody2D>().position.x >= transform.position.x)
+        {
+            isInDefaultPosition = false;
+        }
+
+        if (player.GetComponent<Rigidbody2D>().position.x <= transform.position.x)
+        {
+            isInDefaultPosition = true;
+        }
+
+        float distance = player.GetComponent<Rigidbody2D>().position.x - transform.position.x;
+
+        if ((Mathf.Abs(distance) < distanceThreshold) && numberOfShots > 0)
         {
             if (remainingShootingTime >= 0)
             {
@@ -57,7 +73,7 @@ public class EnemyShoot : MonoBehaviour
                 stringsProjectiles[stringsProjectiles.Count - 1].GetComponentInChildren<SkinnedMeshRenderer>().material.color = randomColor;
                 stringsProjectiles[stringsProjectiles.Count - 1].SetActive(true);
                 stringsProjectiles[stringsProjectiles.Count - 1].GetComponent<Rigidbody2D>().gravityScale = 1;
-                stringsProjectiles[stringsProjectiles.Count - 1].GetComponent<Rigidbody2D>().AddForce((EnemyMove.isInDefaultPosition ? Vector2.left : Vector2.right) * fireForce, ForceMode2D.Impulse);
+                stringsProjectiles[stringsProjectiles.Count - 1].GetComponent<Rigidbody2D>().AddForce((isInDefaultPosition ? Vector2.left : Vector2.right) * fireForce, ForceMode2D.Impulse);
                 stringsProjectiles[stringsProjectiles.Count - 1].transform.SetParent(null);
                 StartCoroutine(DestroyStrings());               
                 remainingShootingTime = Random.Range(0.8f, 2f);
@@ -70,7 +86,7 @@ public class EnemyShoot : MonoBehaviour
             colorIndicator.GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
             wasColorChose = false;
             remainingShootingTime = Random.Range(0.8f, 2f);
-            colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);
+            colorIndicatorTime = Random.Range(0.6f, remainingShootingTime);     
         }
     }
 

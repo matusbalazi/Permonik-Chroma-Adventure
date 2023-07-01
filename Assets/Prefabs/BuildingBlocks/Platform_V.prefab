@@ -79,7 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 130375209
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bf1aac983c3419e4587a8fd9576d7080, type: 3}
   m_Color: {r: 0.7490196, g: 0.23529413, b: 0.7803922, a: 1}
@@ -123,6 +123,7 @@ MonoBehaviour:
   player: {fileID: 6349047311117262076, guid: 4f2833f344d03324da7705b9ba8002e5, type: 3}
   playerColor: {r: 0, g: 0, b: 0, a: 0}
   platformColor: {r: 0, g: 0, b: 0, a: 0}
+  currentPlayerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7573768157528545898
 MonoBehaviour:
   m_ObjectHideFlags: 0

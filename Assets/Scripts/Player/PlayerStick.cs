@@ -1,13 +1,16 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStick : MonoBehaviour
 {
+    public GameObject stickCountText;
     public AudioSource stickSFX;
     private GameObject model;
     private Rigidbody2D rb;
     private float speedForce;
-    private readonly float fullStickTime = 8f;
+    private readonly float fullStickTime = 10f;
     private readonly float timeUntilStickRegen = 2f;
     private bool wasPlayedOnce = false;
 
@@ -45,6 +48,9 @@ public class PlayerStick : MonoBehaviour
                 float moveVertical = Input.GetAxis("Vertical");
                 Vector2 movement = new(0f, moveVertical);
                 transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
+
+                stickCountText.SetActive(true);
+                stickCountText.transform.Find("Value").GetComponent<Text>().text = (Mathf.Round(PlayerProperties.remainingStickTime * 10.0f) * 0.1f).ToString();
             }
         }
         else
@@ -55,6 +61,7 @@ public class PlayerStick : MonoBehaviour
             }
 
             stickSFX.Stop();
+            stickCountText.SetActive(false);
         }
 
         if (Input.GetAxis("LTStick") == 0 && PlayerProperties.isStickActive)
@@ -79,6 +86,14 @@ public class PlayerStick : MonoBehaviour
         {
             PlayerProperties.remainingStickTime++;
             PlayerProperties.timeUntilStickRegen = timeUntilStickRegen;
+        }
+
+        if (Input.GetAxis("LTStick") == 0)
+        {
+            if (PlayerProperties.remainingStickTime < fullStickTime)
+            {
+                PlayerProperties.remainingStickTime += Time.deltaTime;
+            }
         }
     }
 }

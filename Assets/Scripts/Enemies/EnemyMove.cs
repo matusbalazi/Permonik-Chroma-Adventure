@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public static bool isInDefaultPosition = true;
-    public static bool isPlayerClose = false;
+    public bool isInDefaultPosition = true;
     public AudioSource spiderSFX;
     public AudioSource respawnSFX;
     private GameObject player;
@@ -18,7 +17,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        spiderModel = GameObject.Find("SpiderModel");
+        spiderModel = transform.Find("SpiderModel").gameObject;
         mainCamera = GameObject.Find("MainCamera");
         defaultPosition = this.gameObject.transform.localPosition.x;
         rb = GetComponent<Rigidbody2D>();
@@ -33,8 +32,6 @@ public class EnemyMove : MonoBehaviour
             spiderModel.GetComponent<Animator>().Play("SpiderWalk");
 
             spiderSFX.Stop();
-
-            isPlayerClose = false;
 
             if (Mathf.Round(this.gameObject.transform.eulerAngles.y) == 0 && this.gameObject.transform.localPosition.x >= (defaultPosition - travelDistance))
             {
@@ -64,8 +61,6 @@ public class EnemyMove : MonoBehaviour
             {
                 spiderSFX.Play();
             }
-
-            isPlayerClose = true;
 
             if (Mathf.Round(this.gameObject.transform.eulerAngles.y) == 0 && player.GetComponent<Rigidbody2D>().position.x >= rb.position.x)
             {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpikeMove : MonoBehaviour
@@ -137,18 +138,31 @@ public class SpikeMove : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
+
                     if (!respawnSFX.isPlaying)
                     {
                         respawnSFX.Play();
                     }
-                    Destroy(gameObject);
-                    //player.transform.position = new(0f, 10f, 0f);
+
+                    StartCoroutine(DestroySpike());
                 }
                 else
                 {
                     GameProperties.isEnded = true;
                 }
+
+                this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             }
         }
+    }
+
+    IEnumerator DestroySpike()
+    {
+        while (respawnSFX.isPlaying)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }       
+
+        Destroy(gameObject);
     }
 }

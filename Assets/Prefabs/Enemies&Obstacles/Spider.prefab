@@ -915,6 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4c8657f00206c46bd31c7e60e7cbda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInDefaultPosition: 1
   colorIndicator: {fileID: 2824526629549838975}
   stringsProjectiles:
   - {fileID: 3138376250948124090}
@@ -922,6 +923,11 @@ MonoBehaviour:
   - {fileID: 4495595920595263970}
   - {fileID: 6837928038148279623}
   - {fileID: 1160647288934461576}
+  - {fileID: 8436935245371033911}
+  - {fileID: 245603631623997561}
+  - {fileID: 9056086589867333352}
+  - {fileID: 962822450667974199}
+  - {fileID: 1186385302192414317}
 --- !u!1 &4495595920595263970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +1108,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 7
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1123,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2603cf222ff8e394a9739105de0ff482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInDefaultPosition: 1
   spiderSFX: {fileID: 2470007574043059261}
   respawnSFX: {fileID: 4909164319123429502}
 --- !u!1 &5669289033907532877

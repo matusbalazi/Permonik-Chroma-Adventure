@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5251350237630467644, guid: 230727acf35e60b45ab96da26da32d75, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Platform
       objectReference: {fileID: 0}
     - target: {fileID: 7664448516358633974, guid: 230727acf35e60b45ab96da26da32d75, type: 3}
       propertyPath: m_AdaptiveUV

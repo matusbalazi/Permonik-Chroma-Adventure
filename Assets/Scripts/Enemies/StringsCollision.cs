@@ -51,6 +51,8 @@ public class StringsCollision : MonoBehaviour
 
                 this.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
                 this.gameObject.GetComponentInChildren<CircleCollider2D>().enabled = false;
+
+                // PlayerProperties.gems++;
             }
             else
             {
@@ -60,11 +62,11 @@ public class StringsCollision : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
+
                     if (!respawnSFX.isPlaying)
                     {
                         respawnSFX.Play();
                     }
-                    //player.transform.position = new(0f, 10f, 0f);
                 }
                 else
                 {

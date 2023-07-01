@@ -10,7 +10,7 @@ public class PlayerJump : MonoBehaviour
     private float gravityForce;
     private float distanceToGround;
     [SerializeField] bool isGrounded;
-
+    private bool isSticked = false;
     void Start()
     {
         footstepsSFX = GameObject.Find("FootstepsSFX");
@@ -51,17 +51,20 @@ public class PlayerJump : MonoBehaviour
             {
 
 
-                if (Input.GetAxis("Horizontal") != 0 && !PlayerProperties.isStickActive)
+                if ((Input.GetAxis("Horizontal") != 0 && !PlayerProperties.isStickActive) || (Input.GetAxis("Horizontal") != 0 && !isSticked))
                 {
                     model.GetComponent<Animator>().Play("Standard Run");
                 }
                 else
                 {
-                    if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") == 0)
+                    Debug.Log("IsStickActive: " + PlayerProperties.isStickActive);
+                    Debug.Log("IsSticked: " + isSticked);
+
+                    if ((Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") == 0) || (Input.GetAxis("LTStick") > 0 && isSticked && Input.GetAxis("Vertical") == 0))
                     {
                         model.GetComponent<Animator>().Play("Hanging Idle");
                     }
-                    else if (Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") != 0)
+                    else if ((Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") != 0) || (Input.GetAxis("LTStick") > 0 && isSticked && Input.GetAxis("Vertical") != 0))
                     {
                         model.GetComponent<Animator>().Play("Climbing Up Wall");
                     }
@@ -75,7 +78,7 @@ public class PlayerJump : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxis("LTStick") == 0 && PlayerProperties.isStickActive)
+            if (Input.GetAxis("LTStick") == 0 && PlayerProperties.isStickActive && isSticked)
             {
                 model.GetComponent<Animator>().Play("Idle");
             }
@@ -108,16 +111,31 @@ public class PlayerJump : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ceiling"))
             isGrounded = true;
+
+        if (collision.gameObject.CompareTag("Platform") && collision.gameObject.GetComponent<PlatformProperties>().GetIsStickable())
+        {
+            isSticked = true;
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ceiling"))
             isGrounded = true;
+
+        if (collision.gameObject.CompareTag("Platform") && collision.gameObject.GetComponent<PlatformProperties>().GetIsStickable())
+        {
+            isSticked = true;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ceiling"))
             isGrounded = false;
+
+        if (collision.gameObject.CompareTag("Ceiling") || collision.gameObject.CompareTag("Platform"))
+        {
+            isSticked = false;
+        }
     }
     /*
     private void OnTriggerEnter2D(Collider2D other)

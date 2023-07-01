@@ -8,7 +8,7 @@ public static class DefaultValues
     public static Color playerColor = Color.white;
     public static Color displayedColor = Color.white;
     public const bool isStickActive = false;
-    public const float remainingStickTime = 80f;
+    public const float remainingStickTime = 10f;
     public const float timeUntilStickRegen = 2f;
     public const float remainingColorTime = 10f;
     public const float timeUntilColorReset = 10f;

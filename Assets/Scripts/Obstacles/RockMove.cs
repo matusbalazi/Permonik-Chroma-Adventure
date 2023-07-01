@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RockMove : MonoBehaviour
@@ -102,6 +103,8 @@ public class RockMove : MonoBehaviour
                 this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
                 rockSFX.Stop();
                 spriteRenderer.enabled = false;
+
+                // PlayerProperties.gems++;
             }
             else
             {
@@ -111,25 +114,33 @@ public class RockMove : MonoBehaviour
                 if (PlayerProperties.lives > 0)
                 {
                     PlayerProperties.lives--;
+
                     if (!respawnSFX.isPlaying)
                     {
                         respawnSFX.Play();
                     }
-                    Destroy(gameObject);
-                    //player.transform.position = new(0f, 10f, 0f);
+
+                    StartCoroutine(DestroyRock());
                 }
                 else
                 {
                     GameProperties.isEnded = true;
                 }
 
-                wasReset = true;
-                rockFell = false;
                 player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-                this.gameObject.transform.position = defaultRockPosition;
-                rb.velocity = Vector3.zero;
-                rockSFX.Stop();
+                this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             }
         }
+    }
+
+    IEnumerator DestroyRock()
+    {
+        while (respawnSFX.isPlaying)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        Destroy(gameObject);
+        player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 }

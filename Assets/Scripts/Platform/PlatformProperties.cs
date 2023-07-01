@@ -57,6 +57,14 @@ public class PlatformProperties : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && this.isStickable)
+        {
+            PlayerProperties.isStickActive = true;
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && this.isStickable)
@@ -83,5 +91,10 @@ public class PlatformProperties : MonoBehaviour
             timeToRespawn = 3f;
             isBroken = false;
         }
+    }
+
+    public bool GetIsStickable()
+    {
+        return isStickable;
     }
 }

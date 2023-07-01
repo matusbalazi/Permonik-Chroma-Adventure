@@ -8,7 +8,7 @@ public static class PlayerProperties
     public static Color playerColor = Color.white;
     public static Color displayedColor = Color.white;
     public static bool isStickActive = false;
-    public static float remainingStickTime = 80f;
+    public static float remainingStickTime = 10f;
     public static float timeUntilStickRegen = 2f;
     public static float remainingColorTime = 10f;
     public static float timeUntilColorReset = 10f;
