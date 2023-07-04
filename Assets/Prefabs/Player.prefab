@@ -1014,6 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9eb7444708fb646add29cb11fa8411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stickCountText: {fileID: 0}
   stickSFX: {fileID: 4253038114291529660}
 --- !u!114 &7715901389225806297
 MonoBehaviour:
@@ -1841,9 +1842,9 @@ MonoBehaviour:
   pickDownSFX: {fileID: 2395697970600924594}
   newLifeSFX: {fileID: 2342737362905399566}
   powerUpHUD: {fileID: 0}
-  speedBoost: {fileID: 0}
-  speedSlow: {fileID: 0}
-  longStick: {fileID: 0}
+  speedBoost: {fileID: 21300000, guid: ce51fd8dac934a549901dda8fe56f78c, type: 3}
+  speedSlow: {fileID: 21300000, guid: edf1a7d1bbbc1be47acb73758da66668, type: 3}
+  longStick: {fileID: 21300000, guid: a2120d9c48e903245bea34cb24b01e77, type: 3}
 --- !u!1001 &1523955874127233254
 PrefabInstance:
   m_ObjectHideFlags: 0

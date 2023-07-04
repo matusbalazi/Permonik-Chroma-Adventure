@@ -1,17 +1,21 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerColor : MonoBehaviour
 {
     public AudioSource maskSFX;
     private Color originalColor = Color.white;
     private new Renderer renderer;
+    private Light2D light;
     private readonly float colorDuration = 10f;
     private readonly float colorResetDuration = 10f;
 
     void Start()
     {
         renderer = GameObject.Find("mask").GetComponent<MeshRenderer>();
+        light = transform.Find("Light 2D").GetComponent<Light2D>();
+
         //renderer.material.color = Color.white;
     }
 
@@ -57,7 +61,13 @@ public class PlayerColor : MonoBehaviour
                 Time.deltaTime / (colorResetDuration / 2)
                 );
 
-               // .Lerp(PlayerProperties.displayedColor, originalColor, Time.deltaTime / (colorResetDuration / 2));
+            light.color = Color.Lerp(
+               light.color,
+               originalColor,
+               Time.deltaTime / (colorResetDuration / 2)
+               );
+
+           
             PlayerProperties.displayedColor = renderer.materials[0].color;
         }
 
@@ -82,8 +92,14 @@ public class PlayerColor : MonoBehaviour
             newColor,
             1f
         );
-            //newMaterial;
-            //.material.color = newColor;
+
+        light.color = Color.Lerp(
+            newColor,
+            Color.white,
+            0.65f
+        );
+        //newMaterial;
+        //.material.color = newColor;
         PlayerProperties.displayedColor = newColor;
         PlayerProperties.timeUntilColorReset = colorResetDuration;
         PlayerProperties.remainingColorTime = colorDuration;
