@@ -48,8 +48,9 @@ public class PlayerDeath : MonoBehaviour
             respawnSFX.Play();
 
             PlayerProperties.lives--;
-            transform.position = PlayerProperties.Checkpoint;
+            transform.position = PlayerProperties.Checkpoint;            
             WaterRise.WaterPos.Set(transform.position.x, WaterRise.WaterPos.y - 300, WaterRise.WaterPos.z);
+            GameObject.Find("Water").GetComponent<Transform>().position = new Vector3(transform.position.x, WaterRise.WaterPos.y - 300, WaterRise.WaterPos.z);
             respawned = false;
         }
         else

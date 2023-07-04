@@ -26,48 +26,29 @@ public class PlayerCollector : MonoBehaviour
             switch (other.GetComponent<SpawnCollectable>().Type)
             {
                 case CollectableType.gem:
-                    if (!gemSFX.isPlaying)
-                    {
-                        gemSFX.Play();
-                    }
-
+                    gemSFX.Play();
                     PlayerProperties.gems++;
                     break;
-                case CollectableType.life:
-                    if (!newLifeSFX.isPlaying)
-                    {
-                        newLifeSFX.Play();
-                    }
 
+                case CollectableType.life:
+                    newLifeSFX.Play();
                     PlayerProperties.lives++;
                     break;
 
                 case CollectableType.speedBoost:
-                    if (!pickUpSFX.isPlaying)
-                    {
-                        pickUpSFX.Play();
-                    }
-
+                    pickUpSFX.Play();
                     StartCoroutine(SetPowerUpHUD("Speed Boost", null));
                     StartCoroutine(ModifySpeed(10, 180));
                     break;
 
                 case CollectableType.speedSlow:
-                    if (!pickDownSFX.isPlaying)
-                    {
-                        pickDownSFX.Play();
-                    }
-
+                    pickDownSFX.Play();
                     StartCoroutine(SetPowerUpHUD("Speed Slow", null));
                     StartCoroutine(ModifySpeed(5, 80));
                     break;
 
                 case CollectableType.longStick:
-                    if (!pickUpSFX.isPlaying)
-                    {
-                        pickUpSFX.Play();
-                    }
-
+                    pickUpSFX.Play();
                     StartCoroutine(SetPowerUpHUD("Infinite Stick", null));
                     StartCoroutine(ModifyStick(20, 200));
                     break;

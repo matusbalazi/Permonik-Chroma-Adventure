@@ -2,6 +2,7 @@ using UnityEngine;
 //TODO UPRATAT
 public class PlatformProperties : MonoBehaviour
 {
+    public AudioSource crackSFX;
     [SerializeField] private bool isStickable = false;
     [SerializeField] private bool isBreakable = false;
     [SerializeField] private bool isBroken = false;
@@ -48,6 +49,11 @@ public class PlatformProperties : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && isBreakable && rnd < chanceToBreak)
         {
+            if (!crackSFX.isPlaying)
+            {
+                crackSFX.Play();
+            }
+
             isBroken = true;
         }
 
@@ -67,14 +73,21 @@ public class PlatformProperties : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player") && isBreakable && rnd < chanceToBreak)
+        {
+            crackSFX.Stop();
+        }
+
         if (collision.gameObject.CompareTag("Player") && this.isStickable)
         {
             PlayerProperties.isStickActive = false;
-        }
+        }       
     }
 
     private void BreakPlatform()
     {
+        crackSFX.Stop();
+
         this.GetComponent<SpriteRenderer>().enabled = false;
         this.GetComponent<Collider2D>().enabled = false;
 

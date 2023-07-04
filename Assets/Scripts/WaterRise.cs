@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WaterRise : MonoBehaviour
 {
+    public AudioSource waterSFX;
     [SerializeField] GameObject player;
     [SerializeField] float defaultSpeed, diff;
     public static Vector3 WaterPos { get; set; }
@@ -36,5 +37,17 @@ public class WaterRise : MonoBehaviour
 
         transform.position = new Vector3(waterX, waterY += speed, 20);
         WaterPos = transform.position;
+
+        if (diff < 160)
+        {
+            if (!waterSFX.isPlaying)
+            {
+                waterSFX.Play();
+            }
+        } 
+        else
+        {
+            waterSFX.Stop();
+        }
     }
 }

@@ -57,9 +57,6 @@ public class PlayerJump : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("IsStickActive: " + PlayerProperties.isStickActive);
-                    Debug.Log("IsSticked: " + isSticked);
-
                     if ((Input.GetAxis("LTStick") > 0 && PlayerProperties.isStickActive && Input.GetAxis("Vertical") == 0) || (Input.GetAxis("LTStick") > 0 && isSticked && Input.GetAxis("Vertical") == 0))
                     {
                         model.GetComponent<Animator>().Play("Hanging Idle");
