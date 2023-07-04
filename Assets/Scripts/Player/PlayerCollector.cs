@@ -1,3 +1,8 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using static SpawnCollectable;
+
 public class PlayerCollector : MonoBehaviour
 {
     public static bool isSpeedModified = false;
