@@ -1,5 +1,4 @@
-using System;
-using TMPro;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,7 +49,8 @@ public class PlayerStick : MonoBehaviour
                 transform.Translate(speedForce * Time.deltaTime * movement, Space.World);
 
                 stickCountText.SetActive(true);
-                stickCountText.transform.Find("Value").GetComponent<Text>().text = (Mathf.Round(PlayerProperties.remainingStickTime * 10.0f) * 0.1f).ToString();
+                var stickTextValue = Mathf.Round(PlayerProperties.remainingStickTime * 10.0f) * 0.1f;
+                stickCountText.transform.Find("Value").GetComponent<Text>().text = stickTextValue <= 10 ? stickTextValue.ToString("0.0") : "∞";
             }
         }
         else

@@ -62,7 +62,7 @@ public class PlayerCollector : MonoBehaviour
                     }
 
                     StartCoroutine(SetPowerUpHUD("Infinite Stick", longStick));
-                    StartCoroutine(ModifyStick(20, 200));
+                    StartCoroutine(ModifyStick(30, 200));
                     break;
 
                 default:

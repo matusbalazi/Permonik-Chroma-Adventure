@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstaclesGenerator : MonoBehaviour
@@ -8,8 +6,8 @@ public class ObstaclesGenerator : MonoBehaviour
     [SerializeField] Transform position1;
     [SerializeField] Transform position2;
     void Start()
-    {        
-        if (PlayerProperties.score > 50)
+    {
+        if (PlayerProperties.distance > 50)
         {
             switch (Random.Range(1, 10))
             {
@@ -32,7 +30,7 @@ public class ObstaclesGenerator : MonoBehaviour
 
                 default: break;
             }
-        }         
+        }
     }
     private void Generate(Transform position)
     {

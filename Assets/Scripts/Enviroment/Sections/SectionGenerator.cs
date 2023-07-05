@@ -23,12 +23,12 @@ public class SectionGenerator : MonoBehaviour
         {
             sectionsPool.AddRange(bank.GetSectionsEasy());
         }
-        else if (PlayerProperties.distance > breakPoint1 && PlayerProperties.distance <= breakPoint2)
+        else if (PlayerProperties.distance <= breakPoint2)
         {
             sectionsPool.AddRange(bank.GetSectionsEasy());
             sectionsPool.AddRange(bank.GetSectionsMedium());
         }
-        else if (PlayerProperties.distance > breakPoint2 && PlayerProperties.distance <= breakPoint3)
+        else if (PlayerProperties.distance <= breakPoint3)
         {
             sectionsPool.AddRange(bank.GetSectionsEasy());
             sectionsPool.AddRange(bank.GetSectionsMedium());

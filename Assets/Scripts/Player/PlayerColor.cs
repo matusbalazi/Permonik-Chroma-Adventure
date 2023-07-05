@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -56,8 +55,8 @@ public class PlayerColor : MonoBehaviour
             PlayerProperties.timeUntilColorReset -= Time.deltaTime;
 
             renderer.materials[0].color = Color.Lerp(
-                PlayerProperties.displayedColor, 
-                originalColor, 
+                PlayerProperties.displayedColor,
+                originalColor,
                 Time.deltaTime / (colorResetDuration / 2)
                 );
 
@@ -67,7 +66,7 @@ public class PlayerColor : MonoBehaviour
                Time.deltaTime / (colorResetDuration / 2)
                );
 
-           
+
             PlayerProperties.displayedColor = renderer.materials[0].color;
         }
 
