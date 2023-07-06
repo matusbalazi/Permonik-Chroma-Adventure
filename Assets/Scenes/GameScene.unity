@@ -3565,7 +3565,7 @@ PrefabInstance:
       objectReference: {fileID: 518747790}
     - target: {fileID: 1498033820911346553, guid: f1db507e872ecd44c8c8f813726aae6d, type: 3}
       propertyPath: defaultSpeed
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1498033820911346555, guid: f1db507e872ecd44c8c8f813726aae6d, type: 3}
       propertyPath: m_Pivot.x
@@ -4381,6 +4381,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8458406040423388647, guid: 4f2833f344d03324da7705b9ba8002e5, type: 3}
+      propertyPath: longStick
+      value: 
+      objectReference: {fileID: 21300000, guid: 059905436e56e9942ba598412c8c3142, type: 3}
     - target: {fileID: 8458406040423388647, guid: 4f2833f344d03324da7705b9ba8002e5, type: 3}
       propertyPath: powerUpHUD
       value: 
